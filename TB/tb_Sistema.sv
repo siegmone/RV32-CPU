@@ -54,6 +54,12 @@ module tb_Sistema;
     #(CLK_PERIOD) rst = 1'b0;
   end
 
-
+  // Stampa dell'istruzione eseguita a ogni ciclo di clock
+  always @(posedge clk) begin
+    #1ns;  // Attendiamo che i segnali siano stabili
+    if (!rst) begin
+      $display("[PC: 0x%h] %s", PC, asm_bus);
+    end
+  end
 
 endmodule
