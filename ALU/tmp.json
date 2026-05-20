@@ -1,0 +1,1800 @@
+{
+  "design": {
+    "name": "$root",
+    "kind": "Root",
+    "addr": 4903007376640,
+    "members": [
+      {
+        "name": "",
+        "kind": "CompilationUnit",
+        "addr": 4903010682424
+      },
+      {
+        "name": "",
+        "kind": "CompilationUnit",
+        "addr": 4903010682720
+      },
+      {
+        "name": "tb_ALU",
+        "kind": "Instance",
+        "source_file": "tb_ALU_encripted.sv",
+        "source_line": 3,
+        "source_column": 8,
+        "addr": 4903010683992,
+        "body": {
+          "name": "tb_ALU",
+          "kind": "InstanceBody",
+          "source_file": "tb_ALU_encripted.sv",
+          "source_line": 3,
+          "source_column": 8,
+          "addr": 4903010683016,
+          "members": [
+            {
+              "name": "A",
+              "kind": "Variable",
+              "source_file": "tb_ALU_encripted.sv",
+              "source_line": 5,
+              "source_column": 14,
+              "addr": 4903010683200,
+              "type": "logic[31:0]",
+              "lifetime": "Static"
+            },
+            {
+              "name": "B",
+              "kind": "Variable",
+              "source_file": "tb_ALU_encripted.sv",
+              "source_line": 5,
+              "source_column": 17,
+              "addr": 4903010683344,
+              "type": "logic[31:0]",
+              "lifetime": "Static"
+            },
+            {
+              "name": "ALUControl",
+              "kind": "Variable",
+              "source_file": "tb_ALU_encripted.sv",
+              "source_line": 6,
+              "source_column": 13,
+              "addr": 4903010683488,
+              "type": "logic[2:0]",
+              "lifetime": "Static"
+            },
+            {
+              "name": "Y",
+              "kind": "Variable",
+              "source_file": "tb_ALU_encripted.sv",
+              "source_line": 7,
+              "source_column": 14,
+              "addr": 4903010683632,
+              "type": "logic[31:0]",
+              "lifetime": "Static"
+            },
+            {
+              "name": "Zero",
+              "kind": "Variable",
+              "source_file": "tb_ALU_encripted.sv",
+              "source_line": 8,
+              "source_column": 7,
+              "addr": 4903010683776,
+              "type": "logic",
+              "lifetime": "Static"
+            },
+            {
+              "name": "dut",
+              "kind": "Instance",
+              "source_file": "tb_ALU_encripted.sv",
+              "source_line": 10,
+              "source_column": 5,
+              "addr": 4903010684128,
+              "body": {
+                "name": "ALU",
+                "kind": "InstanceBody",
+                "source_file": "ALU.sv",
+                "source_line": 2,
+                "source_column": 8,
+                "addr": 4903010684256,
+                "members": [
+                  {
+                    "name": "A",
+                    "kind": "Port",
+                    "source_file": "ALU.sv",
+                    "source_line": 3,
+                    "source_column": 24,
+                    "addr": 4903010685936,
+                    "type": "logic[31:0]",
+                    "direction": "In",
+                    "internalSymbol": "4903010686064 A"
+                  },
+                  {
+                    "name": "A",
+                    "kind": "Variable",
+                    "source_file": "ALU.sv",
+                    "source_line": 3,
+                    "source_column": 24,
+                    "addr": 4903010686064,
+                    "type": "logic[31:0]",
+                    "lifetime": "Static"
+                  },
+                  {
+                    "name": "B",
+                    "kind": "Port",
+                    "source_file": "ALU.sv",
+                    "source_line": 4,
+                    "source_column": 5,
+                    "addr": 4903010686208,
+                    "type": "logic[31:0]",
+                    "direction": "In",
+                    "internalSymbol": "4903010686336 B"
+                  },
+                  {
+                    "name": "B",
+                    "kind": "Variable",
+                    "source_file": "ALU.sv",
+                    "source_line": 4,
+                    "source_column": 5,
+                    "addr": 4903010686336,
+                    "type": "logic[31:0]",
+                    "lifetime": "Static"
+                  },
+                  {
+                    "name": "ALUControl",
+                    "kind": "Port",
+                    "source_file": "ALU.sv",
+                    "source_line": 5,
+                    "source_column": 23,
+                    "addr": 4903010686480,
+                    "type": "logic[2:0]",
+                    "direction": "In",
+                    "internalSymbol": "4903010686608 ALUControl"
+                  },
+                  {
+                    "name": "ALUControl",
+                    "kind": "Variable",
+                    "source_file": "ALU.sv",
+                    "source_line": 5,
+                    "source_column": 23,
+                    "addr": 4903010686608,
+                    "type": "logic[2:0]",
+                    "lifetime": "Static"
+                  },
+                  {
+                    "name": "Y",
+                    "kind": "Port",
+                    "source_file": "ALU.sv",
+                    "source_line": 6,
+                    "source_column": 25,
+                    "addr": 4903010686752,
+                    "type": "logic[31:0]",
+                    "direction": "Out",
+                    "internalSymbol": "4903010686880 Y"
+                  },
+                  {
+                    "name": "Y",
+                    "kind": "Variable",
+                    "source_file": "ALU.sv",
+                    "source_line": 6,
+                    "source_column": 25,
+                    "addr": 4903010686880,
+                    "type": "logic[31:0]",
+                    "lifetime": "Static"
+                  },
+                  {
+                    "name": "Zero",
+                    "kind": "Port",
+                    "source_file": "ALU.sv",
+                    "source_line": 7,
+                    "source_column": 18,
+                    "addr": 4903010687024,
+                    "type": "logic",
+                    "direction": "Out",
+                    "internalSymbol": "4903010687152 Zero"
+                  },
+                  {
+                    "name": "Zero",
+                    "kind": "Variable",
+                    "source_file": "ALU.sv",
+                    "source_line": 7,
+                    "source_column": 18,
+                    "addr": 4903010687152,
+                    "type": "logic",
+                    "lifetime": "Static"
+                  },
+                  {
+                    "name": "logic_result",
+                    "kind": "Variable",
+                    "source_file": "ALU.sv",
+                    "source_line": 11,
+                    "source_column": 16,
+                    "addr": 4903010684512,
+                    "type": "logic[31:0]",
+                    "lifetime": "Static"
+                  },
+                  {
+                    "name": "arith_result",
+                    "kind": "Variable",
+                    "source_file": "ALU.sv",
+                    "source_line": 12,
+                    "source_column": 16,
+                    "addr": 4903010684656,
+                    "type": "logic[31:0]",
+                    "lifetime": "Static"
+                  },
+                  {
+                    "name": "",
+                    "kind": "ProceduralBlock",
+                    "source_file": "ALU.sv",
+                    "source_line": 15,
+                    "source_column": 3,
+                    "addr": 4903010684800,
+                    "procedureKind": "AlwaysComb",
+                    "body": {
+                      "source_file_start": "ALU.sv",
+                      "source_file_end": "ALU.sv",
+                      "source_line_start": 15,
+                      "source_line_end": 32,
+                      "source_column_start": 15,
+                      "source_column_end": 6,
+                      "kind": "Block",
+                      "blockKind": "Sequential",
+                      "body": {
+                        "source_file_start": "ALU.sv",
+                        "source_file_end": "ALU.sv",
+                        "source_line_start": 15,
+                        "source_line_end": 32,
+                        "source_column_start": 15,
+                        "source_column_end": 6,
+                        "kind": "List",
+                        "list": [
+                          {
+                            "source_file_start": "ALU.sv",
+                            "source_file_end": "ALU.sv",
+                            "source_line_start": 16,
+                            "source_line_end": 16,
+                            "source_column_start": 5,
+                            "source_column_end": 26,
+                            "kind": "ExpressionStatement",
+                            "expr": {
+                              "source_file_start": "ALU.sv",
+                              "source_file_end": "ALU.sv",
+                              "source_line_start": 16,
+                              "source_line_end": 16,
+                              "source_column_start": 5,
+                              "source_column_end": 25,
+                              "kind": "Assignment",
+                              "type": "logic[31:0]",
+                              "left": {
+                                "source_file_start": "ALU.sv",
+                                "source_file_end": "ALU.sv",
+                                "source_line_start": 16,
+                                "source_line_end": 16,
+                                "source_column_start": 5,
+                                "source_column_end": 17,
+                                "kind": "NamedValue",
+                                "type": "logic[31:0]",
+                                "symbol": "4903010684512 logic_result"
+                              },
+                              "right": {
+                                "source_file_start": "ALU.sv",
+                                "source_file_end": "ALU.sv",
+                                "source_line_start": 16,
+                                "source_line_end": 16,
+                                "source_column_start": 20,
+                                "source_column_end": 25,
+                                "kind": "Conversion",
+                                "type": "logic[31:0]",
+                                "operand": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 16,
+                                  "source_line_end": 16,
+                                  "source_column_start": 20,
+                                  "source_column_end": 25,
+                                  "kind": "IntegerLiteral",
+                                  "type": "bit[31:0]",
+                                  "value": "32'd0",
+                                  "constant": "32'd0"
+                                },
+                                "constant": "32'd0"
+                              },
+                              "isNonBlocking": false
+                            }
+                          },
+                          {
+                            "source_file_start": "ALU.sv",
+                            "source_file_end": "ALU.sv",
+                            "source_line_start": 17,
+                            "source_line_end": 31,
+                            "source_column_start": 5,
+                            "source_column_end": 12,
+                            "kind": "Case",
+                            "condition": "Normal",
+                            "check": "None",
+                            "expr": {
+                              "source_file_start": "ALU.sv",
+                              "source_file_end": "ALU.sv",
+                              "source_line_start": 17,
+                              "source_line_end": 17,
+                              "source_column_start": 11,
+                              "source_column_end": 21,
+                              "kind": "NamedValue",
+                              "type": "logic[2:0]",
+                              "symbol": "4903010686608 ALUControl"
+                            },
+                            "items": [
+                              {
+                                "expressions": [
+                                  {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 19,
+                                    "source_line_end": 19,
+                                    "source_column_start": 7,
+                                    "source_column_end": 13,
+                                    "kind": "Conversion",
+                                    "type": "logic[2:0]",
+                                    "operand": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 19,
+                                      "source_line_end": 19,
+                                      "source_column_start": 7,
+                                      "source_column_end": 13,
+                                      "kind": "IntegerLiteral",
+                                      "type": "bit[2:0]",
+                                      "value": "3'b100",
+                                      "constant": "3'b100"
+                                    },
+                                    "constant": "3'b100"
+                                  }
+                                ],
+                                "stmt": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 19,
+                                  "source_line_end": 19,
+                                  "source_column_start": 16,
+                                  "source_column_end": 37,
+                                  "kind": "ExpressionStatement",
+                                  "expr": {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 19,
+                                    "source_line_end": 19,
+                                    "source_column_start": 16,
+                                    "source_column_end": 36,
+                                    "kind": "Assignment",
+                                    "type": "logic[31:0]",
+                                    "left": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 19,
+                                      "source_line_end": 19,
+                                      "source_column_start": 16,
+                                      "source_column_end": 28,
+                                      "kind": "NamedValue",
+                                      "type": "logic[31:0]",
+                                      "symbol": "4903010684512 logic_result"
+                                    },
+                                    "right": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 19,
+                                      "source_line_end": 19,
+                                      "source_column_start": 31,
+                                      "source_column_end": 36,
+                                      "kind": "BinaryOp",
+                                      "type": "logic[31:0]",
+                                      "op": "BinaryXor",
+                                      "left": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 19,
+                                        "source_line_end": 19,
+                                        "source_column_start": 31,
+                                        "source_column_end": 32,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686064 A"
+                                      },
+                                      "right": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 19,
+                                        "source_line_end": 19,
+                                        "source_column_start": 35,
+                                        "source_column_end": 36,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686336 B"
+                                      }
+                                    },
+                                    "isNonBlocking": false
+                                  }
+                                }
+                              },
+                              {
+                                "expressions": [
+                                  {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 21,
+                                    "source_line_end": 21,
+                                    "source_column_start": 7,
+                                    "source_column_end": 13,
+                                    "kind": "Conversion",
+                                    "type": "logic[2:0]",
+                                    "operand": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 21,
+                                      "source_line_end": 21,
+                                      "source_column_start": 7,
+                                      "source_column_end": 13,
+                                      "kind": "IntegerLiteral",
+                                      "type": "bit[2:0]",
+                                      "value": "3'b110",
+                                      "constant": "3'b110"
+                                    },
+                                    "constant": "3'b110"
+                                  }
+                                ],
+                                "stmt": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 21,
+                                  "source_line_end": 21,
+                                  "source_column_start": 16,
+                                  "source_column_end": 37,
+                                  "kind": "ExpressionStatement",
+                                  "expr": {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 21,
+                                    "source_line_end": 21,
+                                    "source_column_start": 16,
+                                    "source_column_end": 36,
+                                    "kind": "Assignment",
+                                    "type": "logic[31:0]",
+                                    "left": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 21,
+                                      "source_line_end": 21,
+                                      "source_column_start": 16,
+                                      "source_column_end": 28,
+                                      "kind": "NamedValue",
+                                      "type": "logic[31:0]",
+                                      "symbol": "4903010684512 logic_result"
+                                    },
+                                    "right": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 21,
+                                      "source_line_end": 21,
+                                      "source_column_start": 31,
+                                      "source_column_end": 36,
+                                      "kind": "BinaryOp",
+                                      "type": "logic[31:0]",
+                                      "op": "BinaryOr",
+                                      "left": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 21,
+                                        "source_line_end": 21,
+                                        "source_column_start": 31,
+                                        "source_column_end": 32,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686064 A"
+                                      },
+                                      "right": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 21,
+                                        "source_line_end": 21,
+                                        "source_column_start": 35,
+                                        "source_column_end": 36,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686336 B"
+                                      }
+                                    },
+                                    "isNonBlocking": false
+                                  }
+                                }
+                              },
+                              {
+                                "expressions": [
+                                  {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 23,
+                                    "source_line_end": 23,
+                                    "source_column_start": 7,
+                                    "source_column_end": 13,
+                                    "kind": "Conversion",
+                                    "type": "logic[2:0]",
+                                    "operand": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 23,
+                                      "source_line_end": 23,
+                                      "source_column_start": 7,
+                                      "source_column_end": 13,
+                                      "kind": "IntegerLiteral",
+                                      "type": "bit[2:0]",
+                                      "value": "3'b111",
+                                      "constant": "3'b111"
+                                    },
+                                    "constant": "3'b111"
+                                  }
+                                ],
+                                "stmt": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 23,
+                                  "source_line_end": 23,
+                                  "source_column_start": 16,
+                                  "source_column_end": 37,
+                                  "kind": "ExpressionStatement",
+                                  "expr": {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 23,
+                                    "source_line_end": 23,
+                                    "source_column_start": 16,
+                                    "source_column_end": 36,
+                                    "kind": "Assignment",
+                                    "type": "logic[31:0]",
+                                    "left": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 23,
+                                      "source_line_end": 23,
+                                      "source_column_start": 16,
+                                      "source_column_end": 28,
+                                      "kind": "NamedValue",
+                                      "type": "logic[31:0]",
+                                      "symbol": "4903010684512 logic_result"
+                                    },
+                                    "right": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 23,
+                                      "source_line_end": 23,
+                                      "source_column_start": 31,
+                                      "source_column_end": 36,
+                                      "kind": "BinaryOp",
+                                      "type": "logic[31:0]",
+                                      "op": "BinaryAnd",
+                                      "left": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 23,
+                                        "source_line_end": 23,
+                                        "source_column_start": 31,
+                                        "source_column_end": 32,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686064 A"
+                                      },
+                                      "right": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 23,
+                                        "source_line_end": 23,
+                                        "source_column_start": 35,
+                                        "source_column_end": 36,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686336 B"
+                                      }
+                                    },
+                                    "isNonBlocking": false
+                                  }
+                                }
+                              },
+                              {
+                                "expressions": [
+                                  {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 25,
+                                    "source_line_end": 25,
+                                    "source_column_start": 7,
+                                    "source_column_end": 13,
+                                    "kind": "Conversion",
+                                    "type": "logic[2:0]",
+                                    "operand": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 25,
+                                      "source_line_end": 25,
+                                      "source_column_start": 7,
+                                      "source_column_end": 13,
+                                      "kind": "IntegerLiteral",
+                                      "type": "bit[2:0]",
+                                      "value": "3'b1",
+                                      "constant": "3'b1"
+                                    },
+                                    "constant": "3'b1"
+                                  }
+                                ],
+                                "stmt": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 25,
+                                  "source_line_end": 25,
+                                  "source_column_start": 16,
+                                  "source_column_end": 43,
+                                  "kind": "ExpressionStatement",
+                                  "expr": {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 25,
+                                    "source_line_end": 25,
+                                    "source_column_start": 16,
+                                    "source_column_end": 42,
+                                    "kind": "Assignment",
+                                    "type": "logic[31:0]",
+                                    "left": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 25,
+                                      "source_line_end": 25,
+                                      "source_column_start": 16,
+                                      "source_column_end": 28,
+                                      "kind": "NamedValue",
+                                      "type": "logic[31:0]",
+                                      "symbol": "4903010684512 logic_result"
+                                    },
+                                    "right": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 25,
+                                      "source_line_end": 25,
+                                      "source_column_start": 31,
+                                      "source_column_end": 42,
+                                      "kind": "BinaryOp",
+                                      "type": "logic[31:0]",
+                                      "op": "LogicalShiftLeft",
+                                      "left": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 25,
+                                        "source_line_end": 25,
+                                        "source_column_start": 31,
+                                        "source_column_end": 32,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686064 A"
+                                      },
+                                      "right": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 25,
+                                        "source_line_end": 25,
+                                        "source_column_start": 36,
+                                        "source_column_end": 42,
+                                        "kind": "RangeSelect",
+                                        "type": "logic[4:0]",
+                                        "selectionKind": "Simple",
+                                        "value": {
+                                          "source_file_start": "ALU.sv",
+                                          "source_file_end": "ALU.sv",
+                                          "source_line_start": 25,
+                                          "source_line_end": 25,
+                                          "source_column_start": 36,
+                                          "source_column_end": 42,
+                                          "kind": "NamedValue",
+                                          "type": "logic[31:0]",
+                                          "symbol": "4903010686336 B"
+                                        },
+                                        "left": {
+                                          "source_file_start": "ALU.sv",
+                                          "source_file_end": "ALU.sv",
+                                          "source_line_start": 25,
+                                          "source_line_end": 25,
+                                          "source_column_start": 38,
+                                          "source_column_end": 39,
+                                          "kind": "IntegerLiteral",
+                                          "type": "int",
+                                          "value": "4",
+                                          "constant": "4"
+                                        },
+                                        "right": {
+                                          "source_file_start": "ALU.sv",
+                                          "source_file_end": "ALU.sv",
+                                          "source_line_start": 25,
+                                          "source_line_end": 25,
+                                          "source_column_start": 40,
+                                          "source_column_end": 41,
+                                          "kind": "IntegerLiteral",
+                                          "type": "int",
+                                          "value": "0",
+                                          "constant": "0"
+                                        }
+                                      }
+                                    },
+                                    "isNonBlocking": false
+                                  }
+                                }
+                              },
+                              {
+                                "expressions": [
+                                  {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 27,
+                                    "source_line_end": 27,
+                                    "source_column_start": 7,
+                                    "source_column_end": 13,
+                                    "kind": "Conversion",
+                                    "type": "logic[2:0]",
+                                    "operand": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 27,
+                                      "source_line_end": 27,
+                                      "source_column_start": 7,
+                                      "source_column_end": 13,
+                                      "kind": "IntegerLiteral",
+                                      "type": "bit[2:0]",
+                                      "value": "3'b11",
+                                      "constant": "3'b11"
+                                    },
+                                    "constant": "3'b11"
+                                  }
+                                ],
+                                "stmt": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 27,
+                                  "source_line_end": 27,
+                                  "source_column_start": 16,
+                                  "source_column_end": 43,
+                                  "kind": "ExpressionStatement",
+                                  "expr": {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 27,
+                                    "source_line_end": 27,
+                                    "source_column_start": 16,
+                                    "source_column_end": 42,
+                                    "kind": "Assignment",
+                                    "type": "logic[31:0]",
+                                    "left": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 27,
+                                      "source_line_end": 27,
+                                      "source_column_start": 16,
+                                      "source_column_end": 28,
+                                      "kind": "NamedValue",
+                                      "type": "logic[31:0]",
+                                      "symbol": "4903010684512 logic_result"
+                                    },
+                                    "right": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 27,
+                                      "source_line_end": 27,
+                                      "source_column_start": 31,
+                                      "source_column_end": 42,
+                                      "kind": "BinaryOp",
+                                      "type": "logic[31:0]",
+                                      "op": "LogicalShiftRight",
+                                      "left": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 27,
+                                        "source_line_end": 27,
+                                        "source_column_start": 31,
+                                        "source_column_end": 32,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686064 A"
+                                      },
+                                      "right": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 27,
+                                        "source_line_end": 27,
+                                        "source_column_start": 36,
+                                        "source_column_end": 42,
+                                        "kind": "RangeSelect",
+                                        "type": "logic[4:0]",
+                                        "selectionKind": "Simple",
+                                        "value": {
+                                          "source_file_start": "ALU.sv",
+                                          "source_file_end": "ALU.sv",
+                                          "source_line_start": 27,
+                                          "source_line_end": 27,
+                                          "source_column_start": 36,
+                                          "source_column_end": 42,
+                                          "kind": "NamedValue",
+                                          "type": "logic[31:0]",
+                                          "symbol": "4903010686336 B"
+                                        },
+                                        "left": {
+                                          "source_file_start": "ALU.sv",
+                                          "source_file_end": "ALU.sv",
+                                          "source_line_start": 27,
+                                          "source_line_end": 27,
+                                          "source_column_start": 38,
+                                          "source_column_end": 39,
+                                          "kind": "IntegerLiteral",
+                                          "type": "int",
+                                          "value": "4",
+                                          "constant": "4"
+                                        },
+                                        "right": {
+                                          "source_file_start": "ALU.sv",
+                                          "source_file_end": "ALU.sv",
+                                          "source_line_start": 27,
+                                          "source_line_end": 27,
+                                          "source_column_start": 40,
+                                          "source_column_end": 41,
+                                          "kind": "IntegerLiteral",
+                                          "type": "int",
+                                          "value": "0",
+                                          "constant": "0"
+                                        }
+                                      }
+                                    },
+                                    "isNonBlocking": false
+                                  }
+                                }
+                              },
+                              {
+                                "expressions": [
+                                  {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 29,
+                                    "source_line_end": 29,
+                                    "source_column_start": 7,
+                                    "source_column_end": 13,
+                                    "kind": "Conversion",
+                                    "type": "logic[2:0]",
+                                    "operand": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 29,
+                                      "source_line_end": 29,
+                                      "source_column_start": 7,
+                                      "source_column_end": 13,
+                                      "kind": "IntegerLiteral",
+                                      "type": "bit[2:0]",
+                                      "value": "3'b101",
+                                      "constant": "3'b101"
+                                    },
+                                    "constant": "3'b101"
+                                  }
+                                ],
+                                "stmt": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 29,
+                                  "source_line_end": 29,
+                                  "source_column_start": 16,
+                                  "source_column_end": 53,
+                                  "kind": "ExpressionStatement",
+                                  "expr": {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 29,
+                                    "source_line_end": 29,
+                                    "source_column_start": 16,
+                                    "source_column_end": 52,
+                                    "kind": "Assignment",
+                                    "type": "logic[31:0]",
+                                    "left": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 29,
+                                      "source_line_end": 29,
+                                      "source_column_start": 16,
+                                      "source_column_end": 28,
+                                      "kind": "NamedValue",
+                                      "type": "logic[31:0]",
+                                      "symbol": "4903010684512 logic_result"
+                                    },
+                                    "right": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 29,
+                                      "source_line_end": 29,
+                                      "source_column_start": 31,
+                                      "source_column_end": 52,
+                                      "kind": "Conversion",
+                                      "type": "logic[31:0]",
+                                      "operand": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 29,
+                                        "source_line_end": 29,
+                                        "source_column_start": 31,
+                                        "source_column_end": 52,
+                                        "kind": "BinaryOp",
+                                        "type": "logic signed[31:0]",
+                                        "op": "ArithmeticShiftRight",
+                                        "left": {
+                                          "source_file_start": "ALU.sv",
+                                          "source_file_end": "ALU.sv",
+                                          "source_line_start": 29,
+                                          "source_line_end": 29,
+                                          "source_column_start": 31,
+                                          "source_column_end": 41,
+                                          "kind": "Call",
+                                          "type": "logic signed[31:0]",
+                                          "subroutine": "$signed",
+                                          "arguments": [
+                                            {
+                                              "source_file_start": "ALU.sv",
+                                              "source_file_end": "ALU.sv",
+                                              "source_line_start": 29,
+                                              "source_line_end": 29,
+                                              "source_column_start": 39,
+                                              "source_column_end": 40,
+                                              "kind": "NamedValue",
+                                              "type": "logic[31:0]",
+                                              "symbol": "4903010686064 A"
+                                            }
+                                          ]
+                                        },
+                                        "right": {
+                                          "source_file_start": "ALU.sv",
+                                          "source_file_end": "ALU.sv",
+                                          "source_line_start": 29,
+                                          "source_line_end": 29,
+                                          "source_column_start": 46,
+                                          "source_column_end": 52,
+                                          "kind": "RangeSelect",
+                                          "type": "logic[4:0]",
+                                          "selectionKind": "Simple",
+                                          "value": {
+                                            "source_file_start": "ALU.sv",
+                                            "source_file_end": "ALU.sv",
+                                            "source_line_start": 29,
+                                            "source_line_end": 29,
+                                            "source_column_start": 46,
+                                            "source_column_end": 52,
+                                            "kind": "NamedValue",
+                                            "type": "logic[31:0]",
+                                            "symbol": "4903010686336 B"
+                                          },
+                                          "left": {
+                                            "source_file_start": "ALU.sv",
+                                            "source_file_end": "ALU.sv",
+                                            "source_line_start": 29,
+                                            "source_line_end": 29,
+                                            "source_column_start": 48,
+                                            "source_column_end": 49,
+                                            "kind": "IntegerLiteral",
+                                            "type": "int",
+                                            "value": "4",
+                                            "constant": "4"
+                                          },
+                                          "right": {
+                                            "source_file_start": "ALU.sv",
+                                            "source_file_end": "ALU.sv",
+                                            "source_line_start": 29,
+                                            "source_line_end": 29,
+                                            "source_column_start": 50,
+                                            "source_column_end": 51,
+                                            "kind": "IntegerLiteral",
+                                            "type": "int",
+                                            "value": "0",
+                                            "constant": "0"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "isNonBlocking": false
+                                  }
+                                }
+                              }
+                            ],
+                            "defaultCase": {
+                              "source_file_start": "ALU.sv",
+                              "source_file_end": "ALU.sv",
+                              "source_line_start": 30,
+                              "source_line_end": 30,
+                              "source_column_start": 16,
+                              "source_column_end": 17,
+                              "kind": "Empty"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "",
+                    "kind": "ProceduralBlock",
+                    "source_file": "ALU.sv",
+                    "source_line": 35,
+                    "source_column": 3,
+                    "addr": 4903010684944,
+                    "procedureKind": "AlwaysComb",
+                    "body": {
+                      "source_file_start": "ALU.sv",
+                      "source_file_end": "ALU.sv",
+                      "source_line_start": 35,
+                      "source_line_end": 44,
+                      "source_column_start": 15,
+                      "source_column_end": 6,
+                      "kind": "Block",
+                      "blockKind": "Sequential",
+                      "body": {
+                        "source_file_start": "ALU.sv",
+                        "source_file_end": "ALU.sv",
+                        "source_line_start": 35,
+                        "source_line_end": 44,
+                        "source_column_start": 15,
+                        "source_column_end": 6,
+                        "kind": "List",
+                        "list": [
+                          {
+                            "source_file_start": "ALU.sv",
+                            "source_file_end": "ALU.sv",
+                            "source_line_start": 36,
+                            "source_line_end": 36,
+                            "source_column_start": 5,
+                            "source_column_end": 26,
+                            "kind": "ExpressionStatement",
+                            "expr": {
+                              "source_file_start": "ALU.sv",
+                              "source_file_end": "ALU.sv",
+                              "source_line_start": 36,
+                              "source_line_end": 36,
+                              "source_column_start": 5,
+                              "source_column_end": 25,
+                              "kind": "Assignment",
+                              "type": "logic[31:0]",
+                              "left": {
+                                "source_file_start": "ALU.sv",
+                                "source_file_end": "ALU.sv",
+                                "source_line_start": 36,
+                                "source_line_end": 36,
+                                "source_column_start": 5,
+                                "source_column_end": 17,
+                                "kind": "NamedValue",
+                                "type": "logic[31:0]",
+                                "symbol": "4903010684656 arith_result"
+                              },
+                              "right": {
+                                "source_file_start": "ALU.sv",
+                                "source_file_end": "ALU.sv",
+                                "source_line_start": 36,
+                                "source_line_end": 36,
+                                "source_column_start": 20,
+                                "source_column_end": 25,
+                                "kind": "Conversion",
+                                "type": "logic[31:0]",
+                                "operand": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 36,
+                                  "source_line_end": 36,
+                                  "source_column_start": 20,
+                                  "source_column_end": 25,
+                                  "kind": "IntegerLiteral",
+                                  "type": "bit[31:0]",
+                                  "value": "32'd0",
+                                  "constant": "32'd0"
+                                },
+                                "constant": "32'd0"
+                              },
+                              "isNonBlocking": false
+                            }
+                          },
+                          {
+                            "source_file_start": "ALU.sv",
+                            "source_file_end": "ALU.sv",
+                            "source_line_start": 37,
+                            "source_line_end": 43,
+                            "source_column_start": 5,
+                            "source_column_end": 12,
+                            "kind": "Case",
+                            "condition": "Normal",
+                            "check": "None",
+                            "expr": {
+                              "source_file_start": "ALU.sv",
+                              "source_file_end": "ALU.sv",
+                              "source_line_start": 37,
+                              "source_line_end": 37,
+                              "source_column_start": 11,
+                              "source_column_end": 21,
+                              "kind": "NamedValue",
+                              "type": "logic[2:0]",
+                              "symbol": "4903010686608 ALUControl"
+                            },
+                            "items": [
+                              {
+                                "expressions": [
+                                  {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 39,
+                                    "source_line_end": 39,
+                                    "source_column_start": 7,
+                                    "source_column_end": 13,
+                                    "kind": "Conversion",
+                                    "type": "logic[2:0]",
+                                    "operand": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 39,
+                                      "source_line_end": 39,
+                                      "source_column_start": 7,
+                                      "source_column_end": 13,
+                                      "kind": "IntegerLiteral",
+                                      "type": "bit[2:0]",
+                                      "value": "3'b0",
+                                      "constant": "3'b0"
+                                    },
+                                    "constant": "3'b0"
+                                  }
+                                ],
+                                "stmt": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 39,
+                                  "source_line_end": 39,
+                                  "source_column_start": 16,
+                                  "source_column_end": 37,
+                                  "kind": "ExpressionStatement",
+                                  "expr": {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 39,
+                                    "source_line_end": 39,
+                                    "source_column_start": 16,
+                                    "source_column_end": 36,
+                                    "kind": "Assignment",
+                                    "type": "logic[31:0]",
+                                    "left": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 39,
+                                      "source_line_end": 39,
+                                      "source_column_start": 16,
+                                      "source_column_end": 28,
+                                      "kind": "NamedValue",
+                                      "type": "logic[31:0]",
+                                      "symbol": "4903010684656 arith_result"
+                                    },
+                                    "right": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 39,
+                                      "source_line_end": 39,
+                                      "source_column_start": 31,
+                                      "source_column_end": 36,
+                                      "kind": "BinaryOp",
+                                      "type": "logic[31:0]",
+                                      "op": "Add",
+                                      "left": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 39,
+                                        "source_line_end": 39,
+                                        "source_column_start": 31,
+                                        "source_column_end": 32,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686064 A"
+                                      },
+                                      "right": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 39,
+                                        "source_line_end": 39,
+                                        "source_column_start": 35,
+                                        "source_column_end": 36,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686336 B"
+                                      }
+                                    },
+                                    "isNonBlocking": false
+                                  }
+                                }
+                              },
+                              {
+                                "expressions": [
+                                  {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 41,
+                                    "source_line_end": 41,
+                                    "source_column_start": 7,
+                                    "source_column_end": 13,
+                                    "kind": "Conversion",
+                                    "type": "logic[2:0]",
+                                    "operand": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 41,
+                                      "source_line_end": 41,
+                                      "source_column_start": 7,
+                                      "source_column_end": 13,
+                                      "kind": "IntegerLiteral",
+                                      "type": "bit[2:0]",
+                                      "value": "3'b10",
+                                      "constant": "3'b10"
+                                    },
+                                    "constant": "3'b10"
+                                  }
+                                ],
+                                "stmt": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 41,
+                                  "source_line_end": 41,
+                                  "source_column_start": 16,
+                                  "source_column_end": 37,
+                                  "kind": "ExpressionStatement",
+                                  "expr": {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 41,
+                                    "source_line_end": 41,
+                                    "source_column_start": 16,
+                                    "source_column_end": 36,
+                                    "kind": "Assignment",
+                                    "type": "logic[31:0]",
+                                    "left": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 41,
+                                      "source_line_end": 41,
+                                      "source_column_start": 16,
+                                      "source_column_end": 28,
+                                      "kind": "NamedValue",
+                                      "type": "logic[31:0]",
+                                      "symbol": "4903010684656 arith_result"
+                                    },
+                                    "right": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 41,
+                                      "source_line_end": 41,
+                                      "source_column_start": 31,
+                                      "source_column_end": 36,
+                                      "kind": "BinaryOp",
+                                      "type": "logic[31:0]",
+                                      "op": "Subtract",
+                                      "left": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 41,
+                                        "source_line_end": 41,
+                                        "source_column_start": 31,
+                                        "source_column_end": 32,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686064 A"
+                                      },
+                                      "right": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 41,
+                                        "source_line_end": 41,
+                                        "source_column_start": 35,
+                                        "source_column_end": 36,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686336 B"
+                                      }
+                                    },
+                                    "isNonBlocking": false
+                                  }
+                                }
+                              }
+                            ],
+                            "defaultCase": {
+                              "source_file_start": "ALU.sv",
+                              "source_file_end": "ALU.sv",
+                              "source_line_start": 42,
+                              "source_line_end": 42,
+                              "source_column_start": 16,
+                              "source_column_end": 17,
+                              "kind": "Empty"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "",
+                    "kind": "ProceduralBlock",
+                    "source_file": "ALU.sv",
+                    "source_line": 47,
+                    "source_column": 3,
+                    "addr": 4903010685056,
+                    "procedureKind": "AlwaysComb",
+                    "body": {
+                      "source_file_start": "ALU.sv",
+                      "source_file_end": "ALU.sv",
+                      "source_line_start": 47,
+                      "source_line_end": 55,
+                      "source_column_start": 15,
+                      "source_column_end": 6,
+                      "kind": "Block",
+                      "blockKind": "Sequential",
+                      "body": {
+                        "source_file_start": "ALU.sv",
+                        "source_file_end": "ALU.sv",
+                        "source_line_start": 47,
+                        "source_line_end": 55,
+                        "source_column_start": 15,
+                        "source_column_end": 6,
+                        "kind": "List",
+                        "list": [
+                          {
+                            "source_file_start": "ALU.sv",
+                            "source_file_end": "ALU.sv",
+                            "source_line_start": 48,
+                            "source_line_end": 53,
+                            "source_column_start": 5,
+                            "source_column_end": 12,
+                            "kind": "Case",
+                            "condition": "Normal",
+                            "check": "None",
+                            "expr": {
+                              "source_file_start": "ALU.sv",
+                              "source_file_end": "ALU.sv",
+                              "source_line_start": 48,
+                              "source_line_end": 48,
+                              "source_column_start": 11,
+                              "source_column_end": 21,
+                              "kind": "NamedValue",
+                              "type": "logic[2:0]",
+                              "symbol": "4903010686608 ALUControl"
+                            },
+                            "items": [
+                              {
+                                "expressions": [
+                                  {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 50,
+                                    "source_line_end": 50,
+                                    "source_column_start": 7,
+                                    "source_column_end": 13,
+                                    "kind": "Conversion",
+                                    "type": "logic[2:0]",
+                                    "operand": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 50,
+                                      "source_line_end": 50,
+                                      "source_column_start": 7,
+                                      "source_column_end": 13,
+                                      "kind": "IntegerLiteral",
+                                      "type": "bit[2:0]",
+                                      "value": "3'b0",
+                                      "constant": "3'b0"
+                                    },
+                                    "constant": "3'b0"
+                                  },
+                                  {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 50,
+                                    "source_line_end": 50,
+                                    "source_column_start": 15,
+                                    "source_column_end": 21,
+                                    "kind": "Conversion",
+                                    "type": "logic[2:0]",
+                                    "operand": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 50,
+                                      "source_line_end": 50,
+                                      "source_column_start": 15,
+                                      "source_column_end": 21,
+                                      "kind": "IntegerLiteral",
+                                      "type": "bit[2:0]",
+                                      "value": "3'b10",
+                                      "constant": "3'b10"
+                                    },
+                                    "constant": "3'b10"
+                                  }
+                                ],
+                                "stmt": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 50,
+                                  "source_line_end": 50,
+                                  "source_column_start": 23,
+                                  "source_column_end": 40,
+                                  "kind": "ExpressionStatement",
+                                  "expr": {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 50,
+                                    "source_line_end": 50,
+                                    "source_column_start": 23,
+                                    "source_column_end": 39,
+                                    "kind": "Assignment",
+                                    "type": "logic[31:0]",
+                                    "left": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 50,
+                                      "source_line_end": 50,
+                                      "source_column_start": 23,
+                                      "source_column_end": 24,
+                                      "kind": "NamedValue",
+                                      "type": "logic[31:0]",
+                                      "symbol": "4903010686880 Y"
+                                    },
+                                    "right": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 50,
+                                      "source_line_end": 50,
+                                      "source_column_start": 27,
+                                      "source_column_end": 39,
+                                      "kind": "NamedValue",
+                                      "type": "logic[31:0]",
+                                      "symbol": "4903010684656 arith_result"
+                                    },
+                                    "isNonBlocking": false
+                                  }
+                                }
+                              }
+                            ],
+                            "defaultCase": {
+                              "source_file_start": "ALU.sv",
+                              "source_file_end": "ALU.sv",
+                              "source_line_start": 52,
+                              "source_line_end": 52,
+                              "source_column_start": 16,
+                              "source_column_end": 33,
+                              "kind": "ExpressionStatement",
+                              "expr": {
+                                "source_file_start": "ALU.sv",
+                                "source_file_end": "ALU.sv",
+                                "source_line_start": 52,
+                                "source_line_end": 52,
+                                "source_column_start": 16,
+                                "source_column_end": 32,
+                                "kind": "Assignment",
+                                "type": "logic[31:0]",
+                                "left": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 52,
+                                  "source_line_end": 52,
+                                  "source_column_start": 16,
+                                  "source_column_end": 17,
+                                  "kind": "NamedValue",
+                                  "type": "logic[31:0]",
+                                  "symbol": "4903010686880 Y"
+                                },
+                                "right": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 52,
+                                  "source_line_end": 52,
+                                  "source_column_start": 20,
+                                  "source_column_end": 32,
+                                  "kind": "NamedValue",
+                                  "type": "logic[31:0]",
+                                  "symbol": "4903010684512 logic_result"
+                                },
+                                "isNonBlocking": false
+                              }
+                            }
+                          },
+                          {
+                            "source_file_start": "ALU.sv",
+                            "source_file_end": "ALU.sv",
+                            "source_line_start": 54,
+                            "source_line_end": 54,
+                            "source_column_start": 5,
+                            "source_column_end": 39,
+                            "kind": "ExpressionStatement",
+                            "expr": {
+                              "source_file_start": "ALU.sv",
+                              "source_file_end": "ALU.sv",
+                              "source_line_start": 54,
+                              "source_line_end": 54,
+                              "source_column_start": 5,
+                              "source_column_end": 38,
+                              "kind": "Assignment",
+                              "type": "logic",
+                              "left": {
+                                "source_file_start": "ALU.sv",
+                                "source_file_end": "ALU.sv",
+                                "source_line_start": 54,
+                                "source_line_end": 54,
+                                "source_column_start": 5,
+                                "source_column_end": 9,
+                                "kind": "NamedValue",
+                                "type": "logic",
+                                "symbol": "4903010687152 Zero"
+                              },
+                              "right": {
+                                "source_file_start": "ALU.sv",
+                                "source_file_end": "ALU.sv",
+                                "source_line_start": 54,
+                                "source_line_end": 54,
+                                "source_column_start": 12,
+                                "source_column_end": 38,
+                                "kind": "ConditionalOp",
+                                "type": "logic[0:0]",
+                                "conditions": [
+                                  {
+                                    "expr": {
+                                      "source_file_start": "ALU.sv",
+                                      "source_file_end": "ALU.sv",
+                                      "source_line_start": 54,
+                                      "source_line_end": 54,
+                                      "source_column_start": 13,
+                                      "source_column_end": 23,
+                                      "kind": "BinaryOp",
+                                      "type": "logic",
+                                      "op": "Equality",
+                                      "left": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 54,
+                                        "source_line_end": 54,
+                                        "source_column_start": 13,
+                                        "source_column_end": 14,
+                                        "kind": "NamedValue",
+                                        "type": "logic[31:0]",
+                                        "symbol": "4903010686880 Y"
+                                      },
+                                      "right": {
+                                        "source_file_start": "ALU.sv",
+                                        "source_file_end": "ALU.sv",
+                                        "source_line_start": 54,
+                                        "source_line_end": 54,
+                                        "source_column_start": 18,
+                                        "source_column_end": 23,
+                                        "kind": "Conversion",
+                                        "type": "logic[31:0]",
+                                        "operand": {
+                                          "source_file_start": "ALU.sv",
+                                          "source_file_end": "ALU.sv",
+                                          "source_line_start": 54,
+                                          "source_line_end": 54,
+                                          "source_column_start": 18,
+                                          "source_column_end": 23,
+                                          "kind": "IntegerLiteral",
+                                          "type": "bit[31:0]",
+                                          "value": "32'd0",
+                                          "constant": "32'd0"
+                                        },
+                                        "constant": "32'd0"
+                                      }
+                                    }
+                                  }
+                                ],
+                                "left": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 54,
+                                  "source_line_end": 54,
+                                  "source_column_start": 27,
+                                  "source_column_end": 31,
+                                  "kind": "Conversion",
+                                  "type": "logic[0:0]",
+                                  "operand": {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 54,
+                                    "source_line_end": 54,
+                                    "source_column_start": 27,
+                                    "source_column_end": 31,
+                                    "kind": "IntegerLiteral",
+                                    "type": "bit[0:0]",
+                                    "value": "1'b1",
+                                    "constant": "1'b1"
+                                  },
+                                  "constant": "1'b1"
+                                },
+                                "right": {
+                                  "source_file_start": "ALU.sv",
+                                  "source_file_end": "ALU.sv",
+                                  "source_line_start": 54,
+                                  "source_line_end": 54,
+                                  "source_column_start": 34,
+                                  "source_column_end": 38,
+                                  "kind": "Conversion",
+                                  "type": "logic[0:0]",
+                                  "operand": {
+                                    "source_file_start": "ALU.sv",
+                                    "source_file_end": "ALU.sv",
+                                    "source_line_start": 54,
+                                    "source_line_end": 54,
+                                    "source_column_start": 34,
+                                    "source_column_end": 38,
+                                    "kind": "IntegerLiteral",
+                                    "type": "bit[0:0]",
+                                    "value": "1'b0",
+                                    "constant": "1'b0"
+                                  },
+                                  "constant": "1'b0"
+                                }
+                              },
+                              "isNonBlocking": false
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "definition": "4903009281792 ALU"
+              },
+              "connections": [
+                {
+                  "port": {
+                    "name": "A",
+                    "kind": "Port",
+                    "source_file": "ALU.sv",
+                    "source_line": 3,
+                    "source_column": 24,
+                    "addr": 4903010685936,
+                    "type": "logic[31:0]",
+                    "direction": "In",
+                    "internalSymbol": "4903010686064 A"
+                  },
+                  "expr": {
+                    "source_file_start": "tb_ALU_encripted.sv",
+                    "source_file_end": "tb_ALU_encripted.sv",
+                    "source_line_start": 10,
+                    "source_line_end": 10,
+                    "source_column_start": 10,
+                    "source_column_end": 12,
+                    "kind": "NamedValue",
+                    "type": "logic[31:0]",
+                    "symbol": "4903010683200 A"
+                  }
+                },
+                {
+                  "port": {
+                    "name": "B",
+                    "kind": "Port",
+                    "source_file": "ALU.sv",
+                    "source_line": 4,
+                    "source_column": 5,
+                    "addr": 4903010686208,
+                    "type": "logic[31:0]",
+                    "direction": "In",
+                    "internalSymbol": "4903010686336 B"
+                  },
+                  "expr": {
+                    "source_file_start": "tb_ALU_encripted.sv",
+                    "source_file_end": "tb_ALU_encripted.sv",
+                    "source_line_start": 10,
+                    "source_line_end": 10,
+                    "source_column_start": 10,
+                    "source_column_end": 12,
+                    "kind": "NamedValue",
+                    "type": "logic[31:0]",
+                    "symbol": "4903010683344 B"
+                  }
+                },
+                {
+                  "port": {
+                    "name": "ALUControl",
+                    "kind": "Port",
+                    "source_file": "ALU.sv",
+                    "source_line": 5,
+                    "source_column": 23,
+                    "addr": 4903010686480,
+                    "type": "logic[2:0]",
+                    "direction": "In",
+                    "internalSymbol": "4903010686608 ALUControl"
+                  },
+                  "expr": {
+                    "source_file_start": "tb_ALU_encripted.sv",
+                    "source_file_end": "tb_ALU_encripted.sv",
+                    "source_line_start": 10,
+                    "source_line_end": 10,
+                    "source_column_start": 10,
+                    "source_column_end": 12,
+                    "kind": "NamedValue",
+                    "type": "logic[2:0]",
+                    "symbol": "4903010683488 ALUControl"
+                  }
+                },
+                {
+                  "port": {
+                    "name": "Y",
+                    "kind": "Port",
+                    "source_file": "ALU.sv",
+                    "source_line": 6,
+                    "source_column": 25,
+                    "addr": 4903010686752,
+                    "type": "logic[31:0]",
+                    "direction": "Out",
+                    "internalSymbol": "4903010686880 Y"
+                  },
+                  "expr": {
+                    "source_file_start": "tb_ALU_encripted.sv",
+                    "source_file_end": "tb_ALU_encripted.sv",
+                    "source_line_start": 10,
+                    "source_line_end": 10,
+                    "source_column_start": 10,
+                    "source_column_end": 12,
+                    "kind": "NamedValue",
+                    "type": "logic[31:0]",
+                    "symbol": "4903010683632 Y"
+                  }
+                },
+                {
+                  "port": {
+                    "name": "Zero",
+                    "kind": "Port",
+                    "source_file": "ALU.sv",
+                    "source_line": 7,
+                    "source_column": 18,
+                    "addr": 4903010687024,
+                    "type": "logic",
+                    "direction": "Out",
+                    "internalSymbol": "4903010687152 Zero"
+                  },
+                  "expr": {
+                    "source_file_start": "tb_ALU_encripted.sv",
+                    "source_file_end": "tb_ALU_encripted.sv",
+                    "source_line_start": 10,
+                    "source_line_end": 10,
+                    "source_column_start": 10,
+                    "source_column_end": 12,
+                    "kind": "NamedValue",
+                    "type": "logic",
+                    "symbol": "4903010683776 Zero"
+                  }
+                }
+              ]
+            }
+          ],
+          "definition": "4903009272576 tb_ALU"
+        },
+        "connections": [
+        ]
+      }
+    ]
+  },
+  "definitions": [
+    {
+      "name": "ALU",
+      "kind": "Definition",
+      "source_file": "ALU.sv",
+      "source_line": 2,
+      "source_column": 8,
+      "addr": 4903009281792,
+      "defaultNetType": "4903007374720 wire",
+      "definitionKind": "Module",
+      "defaultLifetime": "Static",
+      "unconnectedDrive": "None",
+      "cellDefine": false,
+      "timeScale": "1ns / 1ps"
+    },
+    {
+      "name": "tb_ALU",
+      "kind": "Definition",
+      "source_file": "tb_ALU_encripted.sv",
+      "source_line": 3,
+      "source_column": 8,
+      "addr": 4903009272576,
+      "defaultNetType": "4903007374720 wire",
+      "definitionKind": "Module",
+      "defaultLifetime": "Static",
+      "unconnectedDrive": "None",
+      "cellDefine": false,
+      "timeScale": "1ns / 1ps"
+    }
+  ]
+}
