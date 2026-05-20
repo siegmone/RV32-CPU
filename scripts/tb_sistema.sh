@@ -1,0 +1,5 @@
+#! /bin/bash
+
+source scripts/common.sh
+
+mdsim -d $TB_SISTEMA $HELPER $INSTRUCTIONMEMORY $DATAMEMORY $PROCESSOR $ALU $CONTROL $EXTEND $REGISTERFILE
