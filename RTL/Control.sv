@@ -11,6 +11,7 @@ module Control (
     ResultSrc,
     SignedExt,
     PCSave,
+    PCJumpSrc,
     output logic [3:0] ALUControl,
     output logic [2:0] ImmSrc
 );
@@ -22,7 +23,8 @@ module Control (
                          SW     = 7'b0100011,
                          B_TYPE = 7'b1100011,
                          LUI    = 7'b0110111,
-                         JAL    = 7'b1101111;
+                         JAL    = 7'b1101111,
+                         JALR   = 7'b1100111;
 
   // ALUControl for basic instructions
   localparam logic [3:0] UNDEFINED = 4'bxxxx,  // undefined instruction
@@ -67,6 +69,7 @@ module Control (
     SignedExt = 1'b1;  // default: treat as signed
     PCSrc     = 1'b0;  // default: don't jump
     PCSave    = 1'b0;  // default: don't save
+    PCJumpSrc = 1'b0;  // default: don't use the jump register
     case (Opcode)
       R_TYPE: begin
         MemWrite = 1'b0;
@@ -132,6 +135,15 @@ module Control (
       end
 
       JAL: begin
+        MemWrite = 1'b0;
+        RegWrite = 1'b1;
+        ImmSrc = IS_JAL;
+        ALUSrc = 1'b1;
+        ResultSrc = 1'b0;
+        PCSave = 1'b1;
+      end
+
+      JALR: begin
         MemWrite = 1'b0;
         RegWrite = 1'b1;
         ImmSrc = IS_JAL;
