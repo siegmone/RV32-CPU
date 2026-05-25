@@ -10,25 +10,31 @@ module Control (
     MemWrite,
     ResultSrc,
     SignedExt,
-    output logic [2:0] ALUControl,
-    output logic [1:0] ImmSrc
+    PCSave,
+    output logic [3:0] ALUControl,
+    output logic [2:0] ImmSrc
 );
 
+  // opcodes
   localparam logic [6:0] R_TYPE = 7'b0110011,
                          I_TYPE = 7'b0010011,
                          LW     = 7'b0000011,
                          SW     = 7'b0100011,
-                         B_TYPE = 7'b1100011;
+                         B_TYPE = 7'b1100011,
+                         LUI    = 7'b0110111,
+                         JAL    = 7'b1101111;
 
   // ALUControl for basic instructions
-  localparam logic [2:0] ADD = 3'b000,
-                         SUB = 3'b010,
-                         XOR = 3'b100,
-                         OR  = 3'b110,
-                         AND = 3'b111,
-                         SLL = 3'b001,
-                         SRL = 3'b101,
-                         SRA = 3'b011;
+  localparam logic [3:0] UNDEFINED = 4'bxxxx,  // undefined instruction
+  ADD = 4'b0000,  // addition
+  SUB = 4'b0010,  // subtraction
+  XOR = 4'b0100,  // bitwise xor
+  OR = 4'b0110,  // bitwise or
+  AND = 4'b0111,  // bitwise and
+  SLL = 4'b0001,  // shift left logic
+  SRL = 4'b0101,  // shift right logic
+  SRA = 4'b0011,  // shift right arithmetic
+  CPB = 4'b1000;  // copy B
 
   // funct3 for branch instructions
   localparam logic [2:0] BEQ  = 3'b000,
@@ -38,52 +44,66 @@ module Control (
                          BLTU = 3'b110,
                          BGEU = 3'b111;
 
+  // ImmSrc values
+  localparam logic [2:0] IS_UNDEFINED = 3'bxxx,
+                         IS_LW_I_TYPE = 3'b000,
+                         IS_SW        = 3'b001,
+                         IS_B_TYPE    = 3'b010,
+                         IS_LUI       = 3'b011,
+                         IS_JAL       = 3'b100;
+
+  // signals
   logic [6:0] Opcode;
   logic [2:0] funct3;
   logic f7;
 
+  // assigns
   assign Opcode = Instr[6:0];
   assign funct3 = Instr[14:12];
   assign f7 = Instr[30];
 
-
   // control signals handling
   always_comb begin
-    SignedExt = 1'b1;  // signed by default
-    PCSrc = 1'b0;  // don't jump by default
+    SignedExt = 1'b1;  // default: treat as signed
+    PCSrc     = 1'b0;  // default: don't jump
+    PCSave    = 1'b0;  // default: don't save
     case (Opcode)
       R_TYPE: begin
         MemWrite = 1'b0;
         RegWrite = 1'b1;
-        ImmSrc = 2'bxx;
+        ImmSrc = IS_UNDEFINED;
         ALUSrc = 1'b0;
         ResultSrc = 1'b0;
       end
+
       I_TYPE: begin
         MemWrite = 1'b0;
         RegWrite = 1'b1;
-        ImmSrc = 2'b00;
+        ImmSrc = IS_LW_I_TYPE;
         ALUSrc = 1'b1;
         ResultSrc = 1'b0;
       end
+
       LW: begin
         MemWrite = 1'b0;
         RegWrite = 1'b1;
-        ImmSrc = 2'b00;
+        ImmSrc = IS_LW_I_TYPE;
         ALUSrc = 1'b1;
         ResultSrc = 1'b1;
       end
+
       SW: begin  // S_type
         MemWrite = 1'b1;
         RegWrite = 1'b0;
-        ImmSrc = 2'b01;
+        ImmSrc = IS_SW;
         ALUSrc = 1'b1;
         ResultSrc = 1'bx;
       end
+
       B_TYPE: begin
         MemWrite = 1'b0;
         RegWrite = 1'b0;
-        ImmSrc = 2'b10;
+        ImmSrc = IS_B_TYPE;
         ALUSrc = 1'b0;
         ResultSrc = 1'bx;
         case (funct3)
@@ -102,6 +122,24 @@ module Control (
           default: PCSrc = 1'b0;
         endcase
       end
+
+      LUI: begin
+        MemWrite = 1'b0;
+        RegWrite = 1'b1;
+        ImmSrc = IS_LUI;
+        ALUSrc = 1'b1;
+        ResultSrc = 1'b0;
+      end
+
+      JAL: begin
+        MemWrite = 1'b0;
+        RegWrite = 1'b1;
+        ImmSrc = IS_JAL;
+        ALUSrc = 1'b1;
+        ResultSrc = 1'b0;
+        PCSave = 1'b1;
+      end
+
       default: begin
         MemWrite = 1'bx;
         RegWrite = 1'bx;
@@ -121,24 +159,28 @@ module Control (
       case (funct3)
         3'b000:  ALUControl = (f7 == 1'b1) ? SUB : ADD;
         3'b101:  ALUControl = (f7 == 1'b1) ? SRL : SRA;
-        default: ALUControl = funct3;
+        default: ALUControl = {1'b0, funct3};
       endcase
 
       I_TYPE:
       case (funct3)
         3'b101:  ALUControl = (f7 == 1'b1) ? SRL : SRA;
-        default: ALUControl = funct3;
+        default: ALUControl = {1'b0, funct3};
       endcase
 
-      LW: ALUControl = 3'b000;  // add
+      LW: ALUControl = ADD;  // add
 
-      SW: ALUControl = 3'b000;  // add
+      SW: ALUControl = ADD;  // add
 
       B_TYPE: begin
-        ALUControl = 3'b010;  // sub
+        ALUControl = SUB;  // sub
       end
 
-      default: ALUControl = 3'bxxx;
+      LUI: begin
+        ALUControl = CPB;  // copy b
+      end
+
+      default: ALUControl = UNDEFINED;
     endcase
   end
 

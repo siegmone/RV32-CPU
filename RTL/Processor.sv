@@ -16,14 +16,14 @@ module Processor (
   // gli addizionatori per aggiornare il program counter
 
   // Program Counter signals
-  logic PCSrc;
+  logic PCSrc, PCSave;
   logic [31:0] PC_Next;
   logic [31:0] PC_Plus4;
   logic [31:0] PC_Target;
 
   // Immediate handling
   logic [31:0] ImmExt;
-  logic [1:0] ImmSrc;
+  logic [2:0] ImmSrc;
 
   // RegisterFile signals
   logic RegWrite;
@@ -33,9 +33,9 @@ module Processor (
 
   // ALU signals
   logic ALUSrc;
-  logic [2:0] ALUControl;
+  logic [3:0] ALUControl;
   logic [31:0] ALU_Src_A, ALU_Src_B;
-  logic Zero, Neg, SignedExt;
+  logic Zero, Neg, SignedExt, ALUBypass;
 
   // Register writing handling
   logic ResultSrc;

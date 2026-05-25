@@ -3,21 +3,23 @@ module ALU (
     input logic SignedExt,
     input logic [31:0] A,
     B,
-    input logic [2:0] ALUControl,
+    input logic [3:0] ALUControl,
     output logic [31:0] Y,
     output logic Zero,
     Neg
 );
 
   // ALUControl for basic instructions
-  localparam logic [2:0] ADD = 3'b000,
-                         SUB = 3'b010,
-                         XOR = 3'b100,
-                         OR  = 3'b110,
-                         AND = 3'b111,
-                         SLL = 3'b001,
-                         SRL = 3'b101,
-                         SRA = 3'b011;
+  localparam logic [3:0] UNDEFINED = 4'bxxxx,  // undefined instruction
+  ADD = 4'b0000,  // addition
+  SUB = 4'b0010,  // subtraction
+  XOR = 4'b0100,  // bitwise xor
+  OR = 4'b0110,  // bitwise or
+  AND = 4'b0111,  // bitwise and
+  SLL = 4'b0001,  // shift left logic
+  SRL = 4'b0101,  // shift right logic
+  SRA = 4'b0011,  // shift right arithmetic
+  CPB = 4'b1000;  // copy B
 
   // logic and arith buses
   logic [31:0] logic_result;
@@ -45,18 +47,13 @@ module ALU (
   always_comb begin
     logic_result = 32'b0;
     case (ALUControl)
-      // xor: bit-wise xor
-      XOR:  logic_result = A ^ B;
-      // or:  bit-wise or
-      OR:   logic_result = A | B;
-      // and: bit-wise and
-      AND:  logic_result = A & B;
-      // sll: logical left shift
-      SLL:  logic_result = A << B[4:0];
-      // srl: logical right shift
-      SRL:  logic_result = A >> B[4:0];
-      // sra: arithmetic right shift
-      SRA:  logic_result = $signed(A) >>> B[4:0];
+      XOR: logic_result = A ^ B;
+      OR: logic_result = A | B;
+      AND: logic_result = A & B;
+      SLL: logic_result = A << B[4:0];
+      SRL: logic_result = A >> B[4:0];
+      SRA: logic_result = $signed(A) >>> B[4:0];
+      CPB: logic_result = B;
       default: ;
     endcase
   end
@@ -66,10 +63,8 @@ module ALU (
     arith_result = 32'b0;
     sub_ext = A_ext - B_ext;
     case (ALUControl)
-      // add & addi: addition
-      ADD:  arith_result = A + B;
-      // sub & subi: subtraction
-      SUB:  arith_result = sub_ext[31:0];
+      ADD: arith_result = A + B;
+      SUB: arith_result = sub_ext[31:0];
       default: ;
     endcase
     Neg = sub_ext[32];
@@ -81,7 +76,7 @@ module ALU (
       // use arithmetic unit result
       ADD, SUB: Y = arith_result;
       // else use logic unit result
-      default: Y = logic_result;
+      default:  Y = logic_result;
     endcase
     Zero = (Y == 32'b0) ? 1'b1 : 1'b0;
   end
