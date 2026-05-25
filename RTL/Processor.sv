@@ -35,7 +35,7 @@ module Processor (
   logic ALUSrc;
   logic [2:0] ALUControl;
   logic [31:0] ALU_Src_A, ALU_Src_B;
-  logic Zero;
+  logic Zero, Neg, SignedExt;
 
   // Register writing handling
   logic ResultSrc;

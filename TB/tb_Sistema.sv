@@ -3,7 +3,7 @@
 module tb_Sistema;
 
   parameter realtime CLK_PERIOD = 10ns;
-  parameter N_TICKS = 30;  // numero di semiperiodi del clock da generare
+  parameter integer N_TICKS = 30;  // numero di semiperiodi del clock da generare
 
   // array di byte per la stampa dell'istruzione in assembly
   parameter int MAX_ASCII = 64;
