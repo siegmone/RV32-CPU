@@ -49,6 +49,31 @@ module Control (
                          REMU      = 5'b10111,
                          CPB       = 5'b01000;
 
+  // ALUControl for basic instructions
+  // distinction based on MSB:
+  // MSB = 1 -> arithmetic operation
+  // MSB = 0 -> logic operation
+  localparam logic [4:0] UNDEFINED = 5'bxxxxx,
+                         ADD       = 5'b10000,
+                         SUB       = 5'b10010,
+                         MUL       = 5'b10100,
+                         MULH      = 5'b10101,
+                         MULHSU    = 5'b10110,
+                         MULHU     = 5'b10111,
+                         DIV       = 5'b11000,
+                         DIVU      = 5'b11001,
+                         REM       = 5'b11010,
+                         REMU      = 5'b11011,
+                         CPB       = 5'b00000,
+                         SLL       = 5'b00001,
+                         SRA       = 5'b00010,
+                         SRL       = 5'b00011,
+                         SLT       = 5'b00100,
+                         SLTU      = 5'b00101,
+                         AND       = 5'b01000,
+                         XOR       = 5'b01001,
+                         OR        = 5'b01010;
+
   // funct3 for branch instructions
   localparam logic [2:0] BEQ  = 3'b000,
                          BNE  = 3'b001,
@@ -70,7 +95,6 @@ module Control (
   logic [2:0] funct3;
   logic [6:0] funct7;
   logic f7_i, f7_m;
-  logic [4:0] AC_def;
 
   // assigns
   assign Opcode = Instr[6:0];
@@ -78,7 +102,6 @@ module Control (
   assign funct7 = Instr[31:25];
   assign f7_i   = funct7[5];
   assign f7_m   = funct7[0];
-  assign AC_def = {2'b0, funct3};
 
   // control signals handling
   always_comb begin
@@ -195,7 +218,7 @@ module Control (
         end
         3'b001: begin
           if (f7_m == 1'b1) ALUControl = MULH;
-          else ALUControl = AC_def;
+          else ALUControl = SLL;
         end
         3'b010: begin
           if (f7_m == 1'b1) ALUControl = MULHSU;
@@ -207,29 +230,34 @@ module Control (
         end
         3'b100: begin
           if (f7_m == 1'b1) ALUControl = DIV;
-          else ALUControl = AC_def;
+          else ALUControl = XOR;
         end
         3'b101: begin
           if (f7_m == 1'b1) ALUControl = DIVU;
-          else ALUControl = (f7_i == 1'b1) ? SRL : SRA;
+          else ALUControl = (f7_i == 1'b1) ? SRA : SRL;
         end
         3'b110: begin
           if (f7_m == 1'b1) ALUControl = REM;
-          else ALUControl = AC_def;
+          else ALUControl = OR;
         end
         3'b111: begin
           if (f7_m == 1'b1) ALUControl = REMU;
-          else ALUControl = AC_def;
+          else ALUControl = AND;
         end
-        default: ALUControl = AC_def;
+        default: ALUControl = 5'bxxxxx;
       endcase
 
       I_TYPE:
       case (funct3)
-        3'b101:  ALUControl = (f7_i == 1'b1) ? SRL : SRA;
+        3'b000:  ALUControl = ADD;
+        3'b001:  ALUControl = SLL;
         3'b010:  ALUControl = SLT;
         3'b011:  ALUControl = SLTU;
-        default: ALUControl = AC_def;
+        3'b100:  ALUControl = XOR;
+        3'b101:  ALUControl = (f7_i == 1'b1) ? SRA : SRL;
+        3'b110:  ALUControl = OR;
+        3'b111:  ALUControl = AND;
+        default: ALUControl = 5'bxxxxx;
       endcase
 
       LOAD, S_TYPE, JALR: ALUControl = ADD;  // add

@@ -10,26 +10,35 @@ module ALU (
 );
 
   // ALUControl for basic instructions
+  // distinction based on MSB:
+  // MSB = 1 -> arithmetic operation
+  // MSB = 0 -> logic operation
   localparam logic [4:0] UNDEFINED = 5'bxxxxx,
-                         ADD       = 5'b00000,
-                         SUB       = 5'b00010,
-                         XOR       = 5'b00100,
-                         OR        = 5'b00110,
-                         AND       = 5'b00111,
+                         ADD       = 5'b10000,
+                         SUB       = 5'b10010,
+                         MUL       = 5'b10100,
+                         MULH      = 5'b10101,
+                         MULHSU    = 5'b10110,
+                         MULHU     = 5'b10111,
+                         DIV       = 5'b11000,
+                         DIVU      = 5'b11001,
+                         REM       = 5'b11010,
+                         REMU      = 5'b11011,
+                         CPB       = 5'b00000,
                          SLL       = 5'b00001,
-                         SRA       = 5'b00011,
-                         SRL       = 5'b00101,
-                         SLT       = 5'b01001,
-                         SLTU      = 5'b01010,
-                         MUL       = 5'b10000,
-                         MULH      = 5'b10001,
-                         MULHSU    = 5'b10010,
-                         MULHU     = 5'b10011,
-                         DIV       = 5'b10100,
-                         DIVU      = 5'b10101,
-                         REM       = 5'b10110,
-                         REMU      = 5'b10111,
-                         CPB       = 5'b01000;
+                         SRA       = 5'b00010,
+                         SRL       = 5'b00011,
+                         SLT       = 5'b00100,
+                         SLTU      = 5'b00101,
+                         AND       = 5'b01000,
+                         XOR       = 5'b01001,
+                         OR        = 5'b01010;
+
+  // decide if it's logic or arith operation (it's the MSB of ALUControl)
+  // op_type = 0 -> logic
+  // op_type = 1 -> arithmetic
+  logic op_type;
+  assign op_type = ALUControl[4];
 
   // logic and arith buses
   logic [31:0] logic_result;
@@ -99,18 +108,13 @@ module ALU (
       end
       default: ;
     endcase
-    Neg = sub_ext[32];
   end
 
   // final mux
   always_comb begin
-    case (ALUControl)
-      // use arithmetic unit result
-      ADD, SUB, MUL, MULH, MULHSU, MULHU, DIV, DIVU, REM, REMU: Y = arith_result;
-      // else use logic unit result
-      default: Y = logic_result;
-    endcase
+    Y = (op_type == 1'b0) ? logic_result : arith_result;
     Zero = (Y == 32'b0) ? 1'b1 : 1'b0;
+    Neg = (ALUControl == SUB) ? sub_ext[32] : Y[31];
   end
 
 endmodule
