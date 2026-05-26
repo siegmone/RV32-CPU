@@ -6,7 +6,7 @@ module tb_InstructionMemory;
   logic [31:0] RD;
 
   //InstructionMemory  uut  (.*);
-  InstructionMemory #(.FILE_NAME("program.txt")) uut (.*);
+  InstructionMemory #(.FILE_NAME("tests/program.txt")) uut (.*);
 
   initial begin
     $display("Stampa delle prime 16 istruzioni lette dal file 'program.txt' ");

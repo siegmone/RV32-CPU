@@ -2,5 +2,5 @@
 
 source scripts/common.sh
 
-mdsim $ALU $TB_ALU_ENCRIPTED
+mdsim $ALU $TB_ALU
 

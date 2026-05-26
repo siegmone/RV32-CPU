@@ -2,4 +2,4 @@
 
 source scripts/common.sh
 
-mdsim $REGISTERFILE $TB_REGISTERFILE_ENCRYPTED
+mdsim $REGISTERFILE $TB_REGISTERFILE
