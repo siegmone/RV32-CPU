@@ -19,7 +19,9 @@ module ALU (
   SLL = 4'b0001,  // shift left logic
   SRL = 4'b0101,  // shift right logic
   SRA = 4'b0011,  // shift right arithmetic
-  CPB = 4'b1000;  // copy B
+  CPB = 4'b1000,  // copy B
+  SLT = 4'b1010,  // set less than
+  SLTU = 4'b1011;  // set less than unsigned
 
   // logic and arith buses
   logic [31:0] logic_result;
@@ -54,6 +56,8 @@ module ALU (
       SRL: logic_result = A >> B[4:0];
       SRA: logic_result = $signed(A) >>> B[4:0];
       CPB: logic_result = B;
+      SLT: logic_result = ($signed(A) < $signed(B)) ? 32'd1 : 32'd0;
+      SLTU: logic_result = (Neg == 1'b1) ? 32'd1 : 32'd0;
       default: ;
     endcase
   end

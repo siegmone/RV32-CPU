@@ -36,7 +36,9 @@ module Control (
   SLL = 4'b0001,  // shift left logic
   SRL = 4'b0101,  // shift right logic
   SRA = 4'b0011,  // shift right arithmetic
-  CPB = 4'b1000;  // copy B
+  CPB = 4'b1000,  // copy B
+  SLT = 4'b1010,  // set less than
+  SLTU = 4'b1011;  // set less than unsigned
 
   // funct3 for branch instructions
   localparam logic [2:0] BEQ  = 3'b000,
@@ -83,8 +85,8 @@ module Control (
 
       I_TYPE: begin
         RegWrite = 1'b1;
-        ImmSrc = IS_LW_I_TYPE;
-        ALUSrc = 1'b1;
+        ImmSrc   = IS_LW_I_TYPE;
+        ALUSrc   = 1'b1;
       end
 
       LW: begin
@@ -123,8 +125,8 @@ module Control (
 
       LUI: begin
         RegWrite = 1'b1;
-        ImmSrc = IS_LUI;
-        ALUSrc = 1'b1;
+        ImmSrc   = IS_LUI;
+        ALUSrc   = 1'b1;
       end
 
       JAL: begin
@@ -163,12 +165,16 @@ module Control (
       case (funct3)
         3'b000:  ALUControl = (f7 == 1'b1) ? SUB : ADD;
         3'b101:  ALUControl = (f7 == 1'b1) ? SRL : SRA;
+        3'b010:  ALUControl = SLT;
+        3'b011:  ALUControl = SLTU;
         default: ALUControl = {1'b0, funct3};
       endcase
 
       I_TYPE:
       case (funct3)
         3'b101:  ALUControl = (f7 == 1'b1) ? SRL : SRA;
+        3'b010:  ALUControl = SLT;
+        3'b011:  ALUControl = SLTU;
         default: ALUControl = {1'b0, funct3};
       endcase
 
