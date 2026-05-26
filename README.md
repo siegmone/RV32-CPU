@@ -6,7 +6,7 @@ This is a project for an **ASIC** class @ University Federico II of Naples.
 It involves designing a RISC-V 32bit microprocessor with SystemVerilog.
 
 ### Features
-- [x] Basic RV32I instruction set
+- [x] RV32I base instruction set
 - [x] RV32M multiplication/division extension instruction set
 
 For now the only missing part is the backend of the design process:
