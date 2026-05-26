@@ -1,11 +1,14 @@
 # RISC-V 32bit Processor
 
-## Description
 This is a project for an **ASIC** class @ University Federico II of Naples.
 
 It involves designing a RISC-V 32bit microprocessor with SystemVerilog.
 
-### Features
+The programs used are present in the custom environment provided by the professor,
+so the scripts are not useful in a different environment,
+but the source HDL files can still be compiled with the tools of your choice.
+
+## Features
 - [x] RV32I base instruction set
 - [x] RV32M multiplication/division extension instruction set
 
