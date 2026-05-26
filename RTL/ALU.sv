@@ -3,25 +3,33 @@ module ALU (
     input logic SignedExt,
     input logic [31:0] A,
     B,
-    input logic [3:0] ALUControl,
+    input logic [4:0] ALUControl,
     output logic [31:0] Y,
     output logic Zero,
     Neg
 );
 
   // ALUControl for basic instructions
-  localparam logic [3:0] UNDEFINED = 4'bxxxx,  // undefined instruction
-  ADD = 4'b0000,  // addition
-  SUB = 4'b0010,  // subtraction
-  XOR = 4'b0100,  // bitwise xor
-  OR = 4'b0110,  // bitwise or
-  AND = 4'b0111,  // bitwise and
-  SLL = 4'b0001,  // shift left logic
-  SRL = 4'b0101,  // shift right logic
-  SRA = 4'b0011,  // shift right arithmetic
-  CPB = 4'b1000,  // copy B
-  SLT = 4'b1010,  // set less than
-  SLTU = 4'b1011;  // set less than unsigned
+  localparam logic [4:0] UNDEFINED = 5'bxxxxx,
+                         ADD       = 5'b00000,
+                         SUB       = 5'b00010,
+                         XOR       = 5'b00100,
+                         OR        = 5'b00110,
+                         AND       = 5'b00111,
+                         SLL       = 5'b00001,
+                         SRA       = 5'b00011,
+                         SRL       = 5'b00101,
+                         SLT       = 5'b01001,
+                         SLTU      = 5'b01010,
+                         MUL       = 5'b10000,
+                         MULH      = 5'b10001,
+                         MULHSU    = 5'b10010,
+                         MULHU     = 5'b10011,
+                         DIV       = 5'b10100,
+                         DIVU      = 5'b10101,
+                         REM       = 5'b10110,
+                         REMU      = 5'b10111,
+                         CPB       = 5'b01000;
 
   // logic and arith buses
   logic [31:0] logic_result;
@@ -54,9 +62,9 @@ module ALU (
       AND: logic_result = A & B;
       SLL: logic_result = A << B[4:0];
       SRL: logic_result = A >> B[4:0];
-      SRA: logic_result = $signed(A) >>> B[4:0];
+      SRA: logic_result = signed'(A) >>> B[4:0];
       CPB: logic_result = B;
-      SLT: logic_result = ($signed(A) < $signed(B)) ? 32'd1 : 32'd0;
+      SLT: logic_result = (signed'(A) < signed'(B)) ? 32'd1 : 32'd0;
       SLTU: logic_result = (Neg == 1'b1) ? 32'd1 : 32'd0;
       default: ;
     endcase
@@ -69,6 +77,26 @@ module ALU (
     case (ALUControl)
       ADD: arith_result = A + B;
       SUB: arith_result = sub_ext[31:0];
+      MUL: arith_result = A * B;
+      MULH: arith_result = (64'(signed'(A)) * 64'(signed'(B))) >>> 32;
+      MULHSU: arith_result = (64'(signed'(A)) * 64'(B)) >>> 32;
+      MULHU: arith_result = (64'(A) * 64'(B)) >>> 32;
+      DIV: begin
+        if (B == 32'b0) arith_result = 32'hffffffff;
+        else arith_result = signed'(A) / signed'(B);
+      end
+      DIVU: begin
+        if (B == 32'b0) arith_result = 32'hffffffff;
+        else arith_result = A / B;
+      end
+      REM: begin
+        if (B == 32'b0) arith_result = A;
+        else arith_result = signed'(A) % signed'(B);
+      end
+      REMU: begin
+        if (B == 32'b0) arith_result = A;
+        else arith_result = A % B;
+      end
       default: ;
     endcase
     Neg = sub_ext[32];
@@ -78,9 +106,9 @@ module ALU (
   always_comb begin
     case (ALUControl)
       // use arithmetic unit result
-      ADD, SUB: Y = arith_result;
+      ADD, SUB, MUL, MULH, MULHSU, MULHU, DIV, DIVU, REM, REMU: Y = arith_result;
       // else use logic unit result
-      default:  Y = logic_result;
+      default: Y = logic_result;
     endcase
     Zero = (Y == 32'b0) ? 1'b1 : 1'b0;
   end

@@ -16,12 +16,13 @@ module Processor (
   // gli addizionatori per aggiornare il program counter
 
   // Program Counter signals
-  logic PCSrc, PCJumpSrc, PCSave;
+  logic PCSrc, PCJumpSrc;
+  logic [1:0] RegSrc;
   logic [31:0] PC_Next;
-  logic [31:0] PC_Plus4;
-  logic [31:0] PC_Target;
-  logic [31:0] PC_Jalr;
-  logic [31:0] PC_Tmp;
+  logic [31:0] PCPlus4;
+  logic [31:0] PCTarget;
+  logic [31:0] PCJalr;
+  logic [31:0] PCTmp;
 
   // Immediate handling
   logic [31:0] ImmExt;
@@ -35,8 +36,8 @@ module Processor (
 
   // ALU signals
   logic ALUSrc;
-  logic [3:0] ALUControl;
-  logic [31:0] ALU_Src_A, ALU_Src_B;
+  logic [4:0] ALUControl;
+  logic [31:0] ALUSrcA, ALUSrcB;
   logic Zero, Neg, SignedExt, ALUBypass;
 
   // Register writing handling
@@ -48,20 +49,20 @@ module Processor (
   RegisterFile register_file (.*);
   Extend extend_unit (.*);
   ALU alu (
-      .A(ALU_Src_A),
-      .B(ALU_Src_B),
+      .A(ALUSrcA),
+      .B(ALUSrcB),
       .Y(ALUResult),
       .*
   );
 
   // continuous assignment
-  assign ALU_Src_A = RD1;
+  assign ALUSrcA = RD1;
   assign WriteData = RD2;
   assign A1 = Instr[19:15];
   assign A2 = Instr[24:20];
   assign A3 = Instr[11:7];
   assign WE3 = RegWrite;
-  assign PC_Jalr = {ALUResult[31:1], 1'b0};
+  assign PCJalr = {ALUResult[31:1], 1'b0};
 
   // output next PC
   always_ff @(posedge clk) begin
@@ -71,33 +72,39 @@ module Processor (
 
   // add 4 to PC
   always_comb begin
-    PC_Plus4 = PC + 4;
+    PCPlus4 = PC + 4;
   end
 
   // how much to jump
   always_comb begin
-    PC_Target = PC + ImmExt;
+    PCTarget = PC + ImmExt;
   end
 
-  // decide PC_Tmp
+  // decide PCTmp
   always_comb begin
-    PC_Tmp = (PCJumpSrc == 1'b1) ? PC_Jalr : PC_Target;
+    PCTmp = (PCJumpSrc == 1'b1) ? PCJalr : PCTarget;
   end
 
   // jump or continue
   always_comb begin
-    PC_Next = (PCSrc == 1'b1) ? PC_Tmp : PC_Plus4;
+    PC_Next = (PCSrc == 1'b1) ? PCTmp : PCPlus4;
   end
 
   // Decide ALU inputs
   always_comb begin
-    ALU_Src_B = (ALUSrc == 1) ? ImmExt : RD2;
+    ALUSrcB = (ALUSrc == 1) ? ImmExt : RD2;
   end
 
   // Decide what to put into register
   always_comb begin
     Result = (ResultSrc == 1) ? ReadData : ALUResult;
-    WD3 = (PCSave == 1'b1) ? PC_Plus4 : Result;
+    case (RegSrc)
+      2'b00:   WD3 = Result;
+      2'b01:   WD3 = PCPlus4;
+      2'b10:   WD3 = PCTarget;
+      2'b11:   ;
+      default: ;
+    endcase
   end
 
 endmodule
