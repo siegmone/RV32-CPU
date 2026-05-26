@@ -61,7 +61,7 @@ module Processor (
   assign A2 = Instr[24:20];
   assign A3 = Instr[11:7];
   assign WE3 = RegWrite;
-  assign PC_Jalr = {Result[31:1], 1'b0};
+  assign PC_Jalr = {ALUResult[31:1], 1'b0};
 
   // output next PC
   always_ff @(posedge clk) begin

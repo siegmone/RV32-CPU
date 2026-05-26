@@ -66,29 +66,28 @@ module Control (
 
   // control signals handling
   always_comb begin
-    SignedExt = 1'b1;  // default: treat as signed
+    MemWrite  = 1'b0;  // default: don't write in Data Memory
+    RegWrite  = 1'b0;  // default: don't write in Register File
     PCSrc     = 1'b0;  // default: don't jump
     PCSave    = 1'b0;  // default: don't save
     PCJumpSrc = 1'b0;  // default: don't use the jump register
+    SignedExt = 1'b1;  // default: treat as signed
+    ALUSrc    = 1'b0;  // default: use RD2 as SrcB for ALU
+    ResultSrc = 1'b0;  // default: use ALUResult
+    ImmSrc    = IS_UNDEFINED;  // default: undefined immediate
+    // for each case, if not specified, default values apply
     case (Opcode)
       R_TYPE: begin
-        MemWrite = 1'b0;
         RegWrite = 1'b1;
-        ImmSrc = IS_UNDEFINED;
-        ALUSrc = 1'b0;
-        ResultSrc = 1'b0;
       end
 
       I_TYPE: begin
-        MemWrite = 1'b0;
         RegWrite = 1'b1;
         ImmSrc = IS_LW_I_TYPE;
         ALUSrc = 1'b1;
-        ResultSrc = 1'b0;
       end
 
       LW: begin
-        MemWrite = 1'b0;
         RegWrite = 1'b1;
         ImmSrc = IS_LW_I_TYPE;
         ALUSrc = 1'b1;
@@ -97,17 +96,13 @@ module Control (
 
       SW: begin  // S_type
         MemWrite = 1'b1;
-        RegWrite = 1'b0;
         ImmSrc = IS_SW;
         ALUSrc = 1'b1;
         ResultSrc = 1'bx;
       end
 
       B_TYPE: begin
-        MemWrite = 1'b0;
-        RegWrite = 1'b0;
         ImmSrc = IS_B_TYPE;
-        ALUSrc = 1'b0;
         ResultSrc = 1'bx;
         case (funct3)
           BEQ: PCSrc = Zero;
@@ -127,35 +122,32 @@ module Control (
       end
 
       LUI: begin
-        MemWrite = 1'b0;
         RegWrite = 1'b1;
         ImmSrc = IS_LUI;
         ALUSrc = 1'b1;
-        ResultSrc = 1'b0;
       end
 
       JAL: begin
-        MemWrite = 1'b0;
         RegWrite = 1'b1;
         ImmSrc = IS_JAL;
         ALUSrc = 1'b1;
-        ResultSrc = 1'b0;
+        PCSrc = 1'b1;
         PCSave = 1'b1;
       end
 
       JALR: begin
-        MemWrite = 1'b0;
         RegWrite = 1'b1;
-        ImmSrc = IS_JAL;
+        ImmSrc = IS_LW_I_TYPE;
         ALUSrc = 1'b1;
-        ResultSrc = 1'b0;
+        PCSrc = 1'b1;
         PCSave = 1'b1;
+        PCJumpSrc = 1'b1;
       end
 
       default: begin
         MemWrite = 1'bx;
         RegWrite = 1'bx;
-        ImmSrc = 2'bxx;
+        ImmSrc = IS_UNDEFINED;
         ALUSrc = 1'bx;
         ResultSrc = 1'bx;
         PCSrc = 1'bx;
@@ -180,17 +172,11 @@ module Control (
         default: ALUControl = {1'b0, funct3};
       endcase
 
-      LW: ALUControl = ADD;  // add
+      LW, SW, JALR: ALUControl = ADD;  // add
 
-      SW: ALUControl = ADD;  // add
+      B_TYPE: ALUControl = SUB;  // sub
 
-      B_TYPE: begin
-        ALUControl = SUB;  // sub
-      end
-
-      LUI: begin
-        ALUControl = CPB;  // copy b
-      end
+      LUI, JAL: ALUControl = CPB;  // copy b
 
       default: ALUControl = UNDEFINED;
     endcase
