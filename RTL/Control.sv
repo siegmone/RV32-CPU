@@ -28,28 +28,6 @@ module Control (
                          U_TYPE_AUIPC = 7'b0010111;
 
   // ALUControl for basic instructions
-  localparam logic [4:0] UNDEFINED = 5'bxxxxx,
-                         ADD       = 5'b00000,
-                         SUB       = 5'b00010,
-                         XOR       = 5'b00100,
-                         OR        = 5'b00110,
-                         AND       = 5'b00111,
-                         SLL       = 5'b00001,
-                         SRA       = 5'b00011,
-                         SRL       = 5'b00101,
-                         SLT       = 5'b01001,
-                         SLTU      = 5'b01010,
-                         MUL       = 5'b10000,
-                         MULH      = 5'b10001,
-                         MULHSU    = 5'b10010,
-                         MULHU     = 5'b10011,
-                         DIV       = 5'b10100,
-                         DIVU      = 5'b10101,
-                         REM       = 5'b10110,
-                         REMU      = 5'b10111,
-                         CPB       = 5'b01000;
-
-  // ALUControl for basic instructions
   // distinction based on MSB:
   // MSB = 1 -> arithmetic operation
   // MSB = 0 -> logic operation
