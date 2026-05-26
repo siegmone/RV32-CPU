@@ -19,7 +19,7 @@ module tb_Sistema;
   helper my_helper (.*);
 
   InstructionMemory #(
-      .FILE_NAME("test.hex")
+      .FILE_NAME("tests/test.hex")
   ) myInstructionMemory (
       .A (PC),
       .RD(Instr)
