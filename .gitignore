@@ -1,2 +1,4 @@
 tmp.json
 dati.vcd
+_yosys.tmp/
+impl/results/
