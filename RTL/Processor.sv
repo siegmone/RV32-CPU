@@ -98,6 +98,7 @@ module Processor (
   // Decide what to put into register
   always_comb begin
     Result = (ResultSrc == 1) ? ReadData : ALUResult;
+    WD3 = 32'b0;
     case (RegSrc)
       2'b00:   WD3 = Result;
       2'b01:   WD3 = PCPlus4;
