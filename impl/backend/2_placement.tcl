@@ -1,0 +1,55 @@
+# ese01
+# 2_placement.tcl
+
+set CONSTRAINTS_FILE "./src/constraints.sdc"
+set LIB_FILE "/vlsi/tech/ihp-sg13g2/lib/sg13g2_stdcell_typ_1p20V_25C.lib"
+set RC_SCRIPT "/vlsi/tech/ihp-sg13g2/setRC.tcl"
+
+read_liberty $LIB_FILE
+read_db "results/floorplan.odb"
+
+read_sdc $CONSTRAINTS_FILE
+source $RC_SCRIPT
+
+buffer_ports
+report_top_fanout 10
+
+# E' possibile specificare singolarmente dove piazzare i vari pin, ma per semplicità,
+# non lo faremo e lasceremo il compito al programma di poiazzamento
+
+report_design_area
+# Mettiamo una density coerente con report_design_area e realizziamo il global placement,
+# senza inserire ancora i pin
+global_placement -density 0.79 -routability_driven -skip_io
+
+# Piazziamo i pin
+place_pins -hor_layer Metal2 -ver_layer Metal3 -min_distance_in_tracks -min_distance 4
+
+# aggiusto anche il fanout come specificato nel file sdf 
+repair_design
+report_design_area 
+
+# verifica timing
+estimate_parasitics -placement
+set_propagated_clock clk
+report_checks -path_delay max -digits 3 -format full_clock_expanded -field capacitance
+report_checks -path_delay min  -digits 3 -format full_clock_expanded
+
+# Ottimizzazione per aggiustare hold time
+repair_timing -hold -hold_margin 0.100 -verbose
+report_checks -path_delay min -digits 3 -format full_clock_expanded
+
+report_design_area
+# aggiorno il global placement dopo l'introduzione dei buffers
+global_placement -density 0.90 -routability_driven -incremental
+
+# placement dettagliato
+detailed_placement 
+improve_placement -max_displacement 20
+check_placement -verbose
+
+write_db results/placement.odb
+
+#gui::show
+
+#############################################################################
