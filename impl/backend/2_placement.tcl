@@ -1,12 +1,11 @@
-# ese01
 # 2_placement.tcl
 
-set CONSTRAINTS_FILE "./src/constraints.sdc"
+set CONSTRAINTS_FILE "impl/backend/constraints_be.sdc"
 set LIB_FILE "/vlsi/tech/ihp-sg13g2/lib/sg13g2_stdcell_typ_1p20V_25C.lib"
 set RC_SCRIPT "/vlsi/tech/ihp-sg13g2/setRC.tcl"
 
 read_liberty $LIB_FILE
-read_db "results/floorplan.odb"
+read_db "impl/results/floorplan.odb"
 
 read_sdc $CONSTRAINTS_FILE
 source $RC_SCRIPT
@@ -23,11 +22,12 @@ report_design_area
 global_placement -density 0.79 -routability_driven -skip_io
 
 # Piazziamo i pin
-place_pins -hor_layer Metal2 -ver_layer Metal3 -min_distance_in_tracks -min_distance 4
+# place_pins -hor_layer Metal2 -ver_layer Metal3 -min_distance_in_tracks -min_distance 4
+place_pins -hor_layer Metal2 -ver_layer Metal3 -min_distance_in_tracks -min_distance 16 -corner_avoidance 20 -annealing
 
-# aggiusto anche il fanout come specificato nel file sdf 
+# aggiusto anche il fanout come specificato nel file sdf
 repair_design
-report_design_area 
+report_design_area
 
 # verifica timing
 estimate_parasitics -placement
@@ -44,11 +44,11 @@ report_design_area
 global_placement -density 0.90 -routability_driven -incremental
 
 # placement dettagliato
-detailed_placement 
+detailed_placement
 improve_placement -max_displacement 20
 check_placement -verbose
 
-write_db results/placement.odb
+write_db "impl/results/placement.odb"
 
 #gui::show
 

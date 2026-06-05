@@ -1,12 +1,12 @@
-# ese01
 # 3_cts.tcl
-set CONSTRAINTS_FILE "./src/constraints.sdc"
+
+set CONSTRAINTS_FILE "impl/backend/constraints_be.sdc"
 set LIB_FILE "/vlsi/tech/ihp-sg13g2/lib/sg13g2_stdcell_typ_1p20V_25C.lib"
 set RC_SCRIPT "/vlsi/tech/ihp-sg13g2/setRC.tcl"
 
 read_liberty $LIB_FILE
 
-read_db "results/placement.odb"
+read_db "impl/results/placement.odb"
 read_sdc $CONSTRAINTS_FILE
 source $RC_SCRIPT
 
@@ -34,7 +34,7 @@ report_checks -path_delay max  -digits 3 -format full_clock_expanded
 # improve_placement -max_displacement 20
 
 report_design_area
-write_db   results/cts.odb
+write_db   impl/results/cts.odb
 
 #gui::show
 
