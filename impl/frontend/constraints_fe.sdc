@@ -2,7 +2,7 @@
 
 set_cmd_units -time ns -capacitance fF
 
-create_clock -name cpu_clock  -period 12 clk
+create_clock -name cpu_clock  -period 10 clk
 set_clock_transition  0.050 cpu_clock
 
 set_input_delay  -clock cpu_clock 0.5  [all_inputs -no_clocks]

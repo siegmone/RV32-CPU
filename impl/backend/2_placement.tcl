@@ -33,11 +33,6 @@ set_dont_use [get_lib_cells */sg13g2_dlygate*]
 
 repair_design
 
-unset_dont_use [get_lib_cells */sg13g2_buf_1]
-unset_dont_use [get_lib_cells */sg13g2_buf_2]
-unset_dont_use [get_lib_cells */sg13g2_dlygate*]
-
-
 report_design_area
 
 # verifica timing
@@ -59,6 +54,12 @@ global_placement -density 0.90 -routability_driven -incremental
 detailed_placement
 improve_placement -max_displacement 20
 check_placement -verbose
+
+unset_dont_use [get_lib_cells */sg13g2_buf_1]
+unset_dont_use [get_lib_cells */sg13g2_buf_2]
+unset_dont_use [get_lib_cells */sg13g2_dlygate*]
+
+
 
 write_db "impl/results/placement.odb"
 
