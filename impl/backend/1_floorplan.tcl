@@ -34,7 +34,7 @@ read_sdc $CONSTRAINTS_FILE
 # C'è un ulteriore parametro (-site) che determina l'altezza delle righe in cui allocare
 # le standard-cell. E' definito nel file di tecnologia.
 
-set L 590
+set L 750
 set xm [expr 0.9 + $L]
 set ym [expr 3.7 + $L]
 set xtop [expr 0.9 + $xm]
@@ -63,7 +63,7 @@ pdngen
 
 # Aggiungiamo quindi le stripe verticali. Utilizzo TopMetal2
 add_pdn_stripe -grid power_grid -layer TopMetal2  -width 2  -spacing 8 \
-                -offset 14 -pitch 99999 -extend_to_boundary
+                -offset 14 -pitch 50 -extend_to_boundary
 add_pdn_connect -grid power_grid -layers {Metal1 TopMetal2}
 pdngen
 
@@ -72,3 +72,6 @@ check_power_grid -net VSS
 
 write_db "impl/results/floorplan.odb"
 
+gui::show
+
+exit

@@ -14,12 +14,12 @@ source $RC_SCRIPT
 # set_routing_layers -signal Metal1-Metal5 -clock Metal1-Metal5
 
 # improved metal layer distribution
-set_thread_count 2
+set_thread_count [exec nproc]
 set_global_routing_layer_adjustment Metal2 0.3
 set_global_routing_layer_adjustment Metal3 0.3
 set_routing_layers -signal Metal2-Metal5 -clock Metal2-Metal5
 
-global_route  -congestion_iterations 100 -verbose
+global_route  -congestion_iterations 20 -verbose
 
 set_propagated_clock  [all_clocks]
 estimate_parasitics -global_routing
@@ -34,6 +34,8 @@ check_placement -verbose
 
 
 write_db impl/results/routed.odb
+
 gui::show
 
+exit
 

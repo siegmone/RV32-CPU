@@ -10,9 +10,8 @@ read_db "impl/results/placement.odb"
 read_sdc $CONSTRAINTS_FILE
 source $RC_SCRIPT
 
-#c'è anche un buf_16 ed un buf_8
-clock_tree_synthesis -buf_list {sg13g2_buf_1 sg13g2_buf_2 sg13g2_buf_4} \
-                     -root_buf  sg13g2_buf_2
+clock_tree_synthesis -buf_list {sg13g2_buf_4 sg13g2_buf_8 sg13g2_buf_16} \
+                     -root_buf  sg13g2_buf_4
 report_cts
 report_clock_latency
 report_clock_skew
@@ -28,13 +27,15 @@ report_checks -path_delay min  -digits 3 -format full_clock_expanded
 report_checks -path_delay max  -digits 3 -format full_clock_expanded
 
 # Eventuale aggiustamento del hold
-# repair_timing -hold -hold_margin 0.080 -verbose
-# report_checks -path_delay min -digits 3 -format full_clock_expanded
-# detailed_placement
-# improve_placement -max_displacement 20
+repair_timing -hold -hold_margin 0.200 -verbose
+report_checks -path_delay min -digits 3 -format full_clock_expanded
+detailed_placement
+improve_placement -max_displacement 20
 
 report_design_area
 write_db   impl/results/cts.odb
 
-#gui::show
+gui::show
+
+exit
 

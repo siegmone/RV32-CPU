@@ -40,4 +40,8 @@ write_sdf impl/results/final.sdf
 
 write_gds impl/results/final.def  $GDS_FILES $LEF_FILES  impl/results/final.gds
 
+gui::show
+
+exit
+
 #########
