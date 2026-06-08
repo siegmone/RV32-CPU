@@ -92,23 +92,19 @@ module ALU (
       MULHU: arith_result = (64'(A) * 64'(B)) >>> 32;
       DIV: begin
         if (B == 32'b0) arith_result = 32'hffffffff;
-        // else arith_result = signed'(A) / signed'(B);
-        else arith_result = 0;
+        else arith_result = signed'(A) / signed'(B);
       end
       DIVU: begin
         if (B == 32'b0) arith_result = 32'hffffffff;
-        // else arith_result = A / B;
-        else arith_result = 0;
+        else arith_result = A / B;
       end
       REM: begin
         if (B == 32'b0) arith_result = A;
-        // else arith_result = signed'(A) % signed'(B);
-        else arith_result = 0;
+        else arith_result = signed'(A) % signed'(B);
       end
       REMU: begin
         if (B == 32'b0) arith_result = A;
-        // else arith_result = A % B;
-        else arith_result = 0;
+        else arith_result = A % B;
       end
       default: ;
     endcase
