@@ -34,7 +34,7 @@ read_sdc $CONSTRAINTS_FILE
 # C'è un ulteriore parametro (-site) che determina l'altezza delle righe in cui allocare
 # le standard-cell. E' definito nel file di tecnologia.
 
-set L 750
+set L 800
 set xm [expr 0.9 + $L]
 set ym [expr 3.7 + $L]
 set xtop [expr 0.9 + $xm]
