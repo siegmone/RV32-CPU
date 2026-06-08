@@ -10,7 +10,8 @@ but the source HDL files can still be compiled with the tools of your choice.
 
 ## Features
 - [x] RV32I base instruction set
-- [x] RV32M multiplication/division extension instruction set
+- [x] RV32M extension multiplication instructions
+- [ ] RV32M extension division instructions
 
 For now the only missing part is the backend of the design process (floorplanning, placement, routing, ...)
 
