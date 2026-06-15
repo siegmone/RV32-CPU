@@ -34,19 +34,35 @@ read_sdc $CONSTRAINTS_FILE
 # C'è un ulteriore parametro (-site) che determina l'altezza delle righe in cui allocare
 # le standard-cell. E' definito nel file di tecnologia.
 
-set L 750
-set xm [expr 0.9 + $L]
-set ym [expr 3.7 + $L]
-set xtop [expr 0.9 + $xm]
-set ytop [expr 3.7 + $ym]
-puts "xm = $xm, ym = $ym"
-puts "xtop = $xtop, ytop = $ytop"
+set L 680
+set margin_x 1.44
+set margin_y 3.78
+set padding_x [expr $margin_x * 5]
+set padding_y [expr $margin_y * 5]
 
-initialize_floorplan -die_area "0 0 $xtop $ytop" -core_area "0.9 3.7 $xm $ym" -site CoreSite
+set x0_die 0
+set y0_die 0
+set x0_core [expr $margin_x + $padding_x]
+set y0_core [expr $margin_y + $padding_y]
+
+set x1_die [expr 2*($margin_x + $padding_x) + $L]
+set y1_die [expr 2*($margin_y + $padding_y) + $L]
+set x1_core [expr $x0_core + $L]
+set y1_core [expr $y0_core + $L]
+
+puts "x0_core = $x0_core, y0_core = $y0_core"
+puts "x1_core = $x1_core, y1_core = $y1_core"
+puts "x0_die = $x0_die, y0_die = $y0_die"
+puts "x1_die = $x1_die, y1_die = $y1_die"
+
+
+initialize_floorplan -die_area "$x0_die $y0_die $x1_die $y1_die" -core_area "$x0_core $y0_core $x1_core $y1_core" -site CoreSite
+
 report_design_area
+
 source $TRACK_SCRIPT
 
-tapcell   -endcap_master sg13g2_decap_4  -halo_width_x 2 -halo_width_y 2
+tapcell -endcap_master sg13g2_decap_4  -halo_width_x 2 -halo_width_y 2
 report_design_area
 
 #### Gliglia di alimentazione
@@ -55,16 +71,33 @@ report_design_area
 add_global_connection -net VDD -pin_pattern VDD -power
 add_global_connection -net VSS -pin_pattern VSS -ground
 global_connect
+
 set_voltage_domain -name CORE -power VDD -ground VSS
+
 define_pdn_grid -name power_grid -voltage_domains CORE
 
 add_pdn_stripe -grid power_grid -layer Metal1 -width {0.44} -followpins
-pdngen
 
-# Aggiungiamo quindi le stripe verticali. Utilizzo TopMetal2
+add_pdn_stripe -grid power_grid -layer Metal5 \
+    -width 0.8 -spacing 1.6 \
+    -offset 5 -pitch 40 \
+
 add_pdn_stripe -grid power_grid -layer TopMetal2  -width 2  -spacing 8 \
-                -offset 14 -pitch 50 -extend_to_boundary
-add_pdn_connect -grid power_grid -layers {Metal1 TopMetal2}
+    -offset [expr $margin_x * 5] -pitch 50 -extend_to_boundary
+add_pdn_stripe -grid power_grid -layer TopMetal1  -width 2  -spacing 8 \
+    -offset [expr $margin_y * 5] -pitch 50 -extend_to_boundary
+
+add_pdn_ring -grid power_grid \
+    -layers {TopMetal1 TopMetal2} \
+    -widths {2 2} \
+    -spacings {2 2} \
+    -core_offsets {2 2} \
+    -connect_to_pads
+
+add_pdn_connect -grid power_grid -layers {Metal1 Metal5}
+add_pdn_connect -grid power_grid -layers {Metal5 TopMetal1}
+add_pdn_connect -grid power_grid -layers {TopMetal1 TopMetal2}
+
 pdngen
 
 check_power_grid -net VDD
