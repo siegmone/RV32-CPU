@@ -32,6 +32,10 @@ check_antennas
 filler_placement {sg13g2_fill_1 sg13g2_fill_2 sg13g2_decap_4 sg13g2_decap_8}
 check_placement -verbose
 
+tee -file impl/results/route_setup_time.rpt \
+    { report_checks -path_delay max -digits 4 -format full_clock_expanded }
+tee -file impl/results/route_hold_time.rpt \
+    { report_checks -path_delay min -digits 4 -format full_clock_expanded }
 
 write_db impl/results/routed.odb
 

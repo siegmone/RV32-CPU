@@ -20,8 +20,6 @@ link_design $TOP_MODULE
 
 read_sdc $CONSTRAINTS_FILE
 
-#report_design_area
-
 # Argomenti di initialize_floorplan:
 # Dobbiamo indicare le coordinate di:
 # - core (dove verranno alloggiate le celle standard)
@@ -58,12 +56,9 @@ puts "x1_die = $x1_die, y1_die = $y1_die"
 
 initialize_floorplan -die_area "$x0_die $y0_die $x1_die $y1_die" -core_area "$x0_core $y0_core $x1_core $y1_core" -site CoreSite
 
-report_design_area
-
 source $TRACK_SCRIPT
 
 tapcell -endcap_master sg13g2_decap_4  -halo_width_x 2 -halo_width_y 2
-report_design_area
 
 #### Gliglia di alimentazione
 # Definiamo innanzitutto i nomi dei segnali di alimentazione e di massa
@@ -103,6 +98,7 @@ pdngen
 check_power_grid -net VDD
 check_power_grid -net VSS
 
+tee -file impl/results/floorplan_area.rpt { report_design_area }
 write_db "impl/results/floorplan.odb"
 
 gui::show

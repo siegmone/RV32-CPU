@@ -21,9 +21,14 @@ extract_parasitics -ext_model_file $RCX_FILE
 write_spef impl/results/final.spef
 read_spef impl/results/final.spef
 set_propagated_clock  [all_clocks]
-report_checks -path_delay max -digits 3 -format full_clock_expanded
-report_checks -path_delay min -digits 3 -format full_clock_expanded
+report_checks -path_delay max -digits 4 -format full_clock_expanded
+report_checks -path_delay min -digits 4 -format full_clock_expanded
 report_power
+tee -file impl/results/final_setup_time.rpt \
+    { report_checks -path_delay max -digits 4 -format full_clock_expanded }
+tee -file impl/results/final_hold_time.rpt \
+    { report_checks -path_delay min -digits 4 -format full_clock_expanded }
+tee -file impl/results/final_setup_time.rpt { report_power }
 
 set_pdnsim_net_voltage -net VDD -voltage 1.2
 analyze_power_grid -net VDD -error_file VDD.rpt

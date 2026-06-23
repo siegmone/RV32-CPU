@@ -32,7 +32,12 @@ report_checks -path_delay min -digits 3 -format full_clock_expanded
 detailed_placement
 improve_placement -max_displacement 20
 
-report_design_area
+tee -file impl/results/cts_setup_time.rpt \
+    { report_checks -path_delay max -digits 3 -format full_clock_expanded }
+tee -file impl/results/cts_hold_time.rpt \
+    { report_checks -path_delay min -digits 3 -format full_clock_expanded }
+
+tee -file impl/results/cts_design_area.rpt { report_design_area }
 write_db   impl/results/cts.odb
 
 gui::show

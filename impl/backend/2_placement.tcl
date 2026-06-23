@@ -39,14 +39,19 @@ report_design_area
 estimate_parasitics -placement
 set_propagated_clock clk
 report_checks -path_delay max -digits 3 -format full_clock_expanded -field capacitance
+tee -file impl/results/placement_setup_time.rpt \
+    { report_checks -path_delay max -digits 3 -format full_clock_expanded -field capacitance }
 report_checks -path_delay min  -digits 3 -format full_clock_expanded
 
 # Ottimizzazione per aggiustare hold time
 repair_timing -setup -verbose
 repair_timing -hold -hold_margin 0.150 -verbose
 report_checks -path_delay min -digits 3 -format full_clock_expanded
+tee -file impl/results/placement_hold_time.rpt \
+    { report_checks -path_delay min  -digits 3 -format full_clock_expanded }
 
 report_design_area
+tee -file impl/results/placement_area.rpt { report_design_area }
 # aggiorno il global placement dopo l'introduzione dei buffers
 global_placement -density 0.90 -routability_driven -incremental
 
@@ -58,7 +63,6 @@ check_placement -verbose
 unset_dont_use [get_lib_cells */sg13g2_buf_1]
 unset_dont_use [get_lib_cells */sg13g2_buf_2]
 unset_dont_use [get_lib_cells */sg13g2_dlygate*]
-
 
 
 write_db "impl/results/placement.odb"

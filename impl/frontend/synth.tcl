@@ -27,7 +27,7 @@ report_area
 report_timing
 
 # eventual salvataggio dei report in file di testo
-report_area   ./impl/results/area_report.txt
-report_timing ./impl/results/timing_report.txt
+report_area   ./impl/results/synth_area_report.txt
+report_timing ./impl/results/synth_timing_report.txt
 
 
