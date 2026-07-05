@@ -19,7 +19,7 @@ report_top_fanout 10
 report_design_area
 # Mettiamo una density coerente con report_design_area e realizziamo il global placement,
 # senza inserire ancora i pin
-global_placement -density 0.55 -routability_driven -skip_io
+global_placement -density 0.58 -routability_driven -skip_io
 
 # Piazziamo i pin
 # place_pins -hor_layer Metal2 -ver_layer Metal3 -min_distance_in_tracks -min_distance 4
@@ -38,19 +38,18 @@ report_design_area
 # verifica timing
 estimate_parasitics -placement
 set_propagated_clock clk
-report_checks -path_delay max -digits 3 -format full_clock_expanded -field capacitance
 tee -file impl/results/placement_setup_time.rpt \
     { report_checks -path_delay max -digits 3 -format full_clock_expanded -field capacitance }
-report_checks -path_delay min  -digits 3 -format full_clock_expanded
+
+tee -file impl/results/placement_setup_time.rpt \
+    { report_checks -path_delay min  -digits 3 -format full_clock_expanded }
 
 # Ottimizzazione per aggiustare hold time
 repair_timing -setup -verbose
 repair_timing -hold -hold_margin 0.150 -verbose
-report_checks -path_delay min -digits 3 -format full_clock_expanded
 tee -file impl/results/placement_hold_time.rpt \
     { report_checks -path_delay min  -digits 3 -format full_clock_expanded }
 
-report_design_area
 tee -file impl/results/placement_area.rpt { report_design_area }
 # aggiorno il global placement dopo l'introduzione dei buffers
 global_placement -density 0.90 -routability_driven -incremental

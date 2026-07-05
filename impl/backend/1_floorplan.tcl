@@ -35,7 +35,7 @@ read_sdc $CONSTRAINTS_FILE
 set L 680
 set margin_x 1.44
 set margin_y 3.78
-set padding_x [expr $margin_x * 5]
+set padding_x [expr $margin_x * 12]
 set padding_y [expr $margin_y * 5]
 
 set x0_die 0
@@ -76,7 +76,7 @@ add_pdn_stripe -grid power_grid -layer Metal1 -width {0.44} -followpins
 # metal 5 vertical stripes (solves TopMetal1 to metal1 vias snapping issues)
 add_pdn_stripe -grid power_grid -layer Metal5 \
     -width 0.8 -spacing 1.6 \
-    -offset 5 -pitch 40 \
+    -offset 5 -pitch 60 \
 
 # vertical stripes
 add_pdn_stripe -grid power_grid -layer TopMetal2  -width 2  -spacing 8 \
