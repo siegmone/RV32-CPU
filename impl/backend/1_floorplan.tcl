@@ -60,7 +60,7 @@ source $TRACK_SCRIPT
 
 tapcell -endcap_master sg13g2_decap_4  -halo_width_x 2 -halo_width_y 2
 
-#### Gliglia di alimentazione
+#### Griglia di alimentazione
 # Definiamo innanzitutto i nomi dei segnali di alimentazione e di massa
 # I pin delle celle standard si chiamano VDD e VSS e noi continuiamo a chiamarli allo stesso modo
 add_global_connection -net VDD -pin_pattern VDD -power
@@ -73,15 +73,20 @@ define_pdn_grid -name power_grid -voltage_domains CORE
 
 add_pdn_stripe -grid power_grid -layer Metal1 -width {0.44} -followpins
 
+# metal 5 vertical stripes (solves TopMetal1 to metal1 vias snapping issues)
 add_pdn_stripe -grid power_grid -layer Metal5 \
     -width 0.8 -spacing 1.6 \
     -offset 5 -pitch 40 \
 
+# vertical stripes
 add_pdn_stripe -grid power_grid -layer TopMetal2  -width 2  -spacing 8 \
     -offset [expr $margin_x * 5] -pitch 50 -extend_to_boundary
+
+# horizontal stripes
 add_pdn_stripe -grid power_grid -layer TopMetal1  -width 2  -spacing 8 \
     -offset [expr $margin_y * 5] -pitch 50 -extend_to_boundary
 
+# ring
 add_pdn_ring -grid power_grid \
     -layers {TopMetal1 TopMetal2} \
     -widths {2 2} \
@@ -89,6 +94,7 @@ add_pdn_ring -grid power_grid \
     -core_offsets {2 2} \
     -connect_to_pads
 
+# vias
 add_pdn_connect -grid power_grid -layers {Metal1 Metal5}
 add_pdn_connect -grid power_grid -layers {Metal5 TopMetal1}
 add_pdn_connect -grid power_grid -layers {TopMetal1 TopMetal2}

@@ -19,7 +19,7 @@ run_step() {
 
 case "$STEP" in
     "")
-        run_step 0 "Synthesis"  myosys  ./impl/frontend/synth.tcl
+        run_step 0 "Synthesis"  myosys   ./impl/frontend/synth.tcl
         run_step 1 "Floorplan"  openroad ./impl/backend/1_floorplan.tcl
         run_step 2 "Placement"  openroad ./impl/backend/2_placement.tcl
         run_step 3 "CTS"        openroad ./impl/backend/3_cts.tcl

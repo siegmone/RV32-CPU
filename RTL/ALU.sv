@@ -1,4 +1,7 @@
 `timescale 1ns / 1ps
+
+import riscv_common::*;
+
 module ALU (
     input logic SignedExt,
     input logic [31:0] A,
@@ -9,30 +12,6 @@ module ALU (
     Neg
 );
 
-  // ALUControl for basic instructions
-  // distinction based on MSB:
-  // MSB = 1 -> arithmetic operation
-  // MSB = 0 -> logic operation
-  localparam logic [4:0] UNDEFINED = 5'bxxxxx,
-                         ADD       = 5'b10000,
-                         SUB       = 5'b10010,
-                         MUL       = 5'b10100,
-                         MULH      = 5'b10101,
-                         MULHSU    = 5'b10110,
-                         MULHU     = 5'b10111,
-                         DIV       = 5'b11000,
-                         DIVU      = 5'b11001,
-                         REM       = 5'b11010,
-                         REMU      = 5'b11011,
-                         CPB       = 5'b00000,
-                         SLL       = 5'b00001,
-                         SRA       = 5'b00010,
-                         SRL       = 5'b00011,
-                         SLT       = 5'b00100,
-                         SLTU      = 5'b00101,
-                         AND       = 5'b01000,
-                         XOR       = 5'b01001,
-                         OR        = 5'b01010;
 
   // decide if it's logic or arith operation (it's the MSB of ALUControl)
   // op_type = 0 -> logic
@@ -66,15 +45,15 @@ module ALU (
   always_comb begin
     logic_result = 32'b0;
     case (ALUControl)
-      XOR: logic_result = A ^ B;
-      OR: logic_result = A | B;
-      AND: logic_result = A & B;
-      SLL: logic_result = A << B[4:0];
-      SRL: logic_result = A >> B[4:0];
-      SRA: logic_result = signed'(A) >>> B[4:0];
-      CPB: logic_result = B;
-      SLT: logic_result = (signed'(A) < signed'(B)) ? 32'd1 : 32'd0;
-      SLTU: logic_result = (Neg == 1'b1) ? 32'd1 : 32'd0;
+      XOR : logic_result = A ^ B;
+      OR  : logic_result = A | B;
+      AND : logic_result = A & B;
+      SLL : logic_result = A << B[4:0];
+      SRL : logic_result = A >> B[4:0];
+      SRA : logic_result = signed'(A) >>> B[4:0];
+      CPB : logic_result = B;
+      SLT : logic_result = sub_ext[32] ? 32'd1 : 32'd0;
+      SLTU: logic_result = (A < B) ? 32'd1 : 32'd0;
       default: ;
     endcase
   end
@@ -84,14 +63,15 @@ module ALU (
     arith_result = 32'b0;
     sub_ext = A_ext - B_ext;
     case (ALUControl)
-      ADD: arith_result = A + B;
-      SUB: arith_result = sub_ext[31:0];
-      MUL: arith_result = A * B;
-      MULH: arith_result = (64'(signed'(A)) * 64'(signed'(B))) >>> 32;
+      ADD   : arith_result = A + B;
+      SUB   : arith_result = sub_ext[31:0];
+      MUL   : arith_result = A * B;
+      MULH  : arith_result = (64'(signed'(A)) * 64'(signed'(B))) >>> 32;
       MULHSU: arith_result = (64'(signed'(A)) * 64'(B)) >>> 32;
-      MULHU: arith_result = (64'(A) * 64'(B)) >>> 32;
+      MULHU : arith_result = (64'(A) * 64'(B)) >>> 32;
       DIV: begin
         if (B == 32'b0) arith_result = 32'hffffffff;
+        // else if (A == 32'h80000000 && B == 32'hffffffff)
         // else arith_result = signed'(A) / signed'(B);
         else arith_result = 0;
       end

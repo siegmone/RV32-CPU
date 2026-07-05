@@ -8,6 +8,7 @@ set VERILOG_FILES {
     ./RTL/Processor.sv
     ./RTL/RegisterFile.sv
     ./RTL/ALU.sv
+    ./RTL/riscv_common.sv
 }
 set CONSTRAINTS_FILE ./impl/frontend/constraints_fe.sdc
 
